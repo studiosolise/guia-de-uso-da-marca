@@ -54,6 +54,7 @@
       margin-bottom: 0.75rem;
     }
 
+    /* Ajuste 4: ordem ícone → nome → número */
     .sidebar-link {
       display: flex;
       align-items: center;
@@ -84,12 +85,16 @@
       flex-shrink: 0;
     }
 
+    .sidebar-nome {
+      flex: 1;
+    }
+
     .sidebar-num {
       font-size: 0.625rem;
       letter-spacing: 0.1em;
-      color: var(--cor-bege);
+      color: var(--cor-texto-sec);
       font-weight: 200;
-      margin-right: auto;
+      margin-left: auto;
     }
 
     /* Conteúdo principal */
@@ -99,32 +104,13 @@
       min-width: 0;
     }
 
-    /* Hero */
+    /* Hero — ajuste 5: sem blocos decorativos, subtítulo em texto normal */
     .hero-manual {
       background: #ffffff;
       padding: 6rem 4rem 5rem;
       position: relative;
       overflow: hidden;
       border-bottom: 1px solid var(--cor-cinza);
-    }
-
-    .hero-bloco-bege {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 220px;
-      height: 140px;
-      background: var(--cor-bege);
-      opacity: 0.5;
-    }
-
-    .hero-bloco-cinza {
-      position: absolute;
-      bottom: 0;
-      right: 180px;
-      width: 100px;
-      height: 60px;
-      background: var(--cor-cinza);
     }
 
     .hero-label {
@@ -147,10 +133,11 @@
     .hero-subtitulo {
       font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
       font-weight: 200;
-      font-size: 1.0625rem;
+      font-size: 1rem;
       color: var(--cor-texto-sec);
       max-width: 500px;
       line-height: 1.6;
+      text-transform: none;
     }
 
     /* Seções */
@@ -216,7 +203,7 @@
       max-width: 640px;
     }
 
-    /* Cards de arquivo */
+    /* Cards de arquivo — ajuste 11: sem borda nem sombra */
     .grade-arquivos {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -226,13 +213,15 @@
 
     .card-arquivo {
       background: #ffffff;
-      border: 1px solid var(--cor-cinza);
+      border: none;
+      box-shadow: none;
       padding: 1.5rem;
       position: relative;
     }
 
+    /* Ajuste 9: cards em seção off-white */
     .secao-manual:nth-child(even) .card-arquivo {
-      background: #ffffff;
+      background: var(--cor-off-white);
     }
 
     .card-arquivo-top {
@@ -262,13 +251,37 @@
       margin: 0 0 0.5rem;
     }
 
-    .card-arquivo p {
+    /* Ajuste 2: texto do card oculto por padrão */
+    .card-arquivo p.card-texto {
       font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
       font-weight: 200;
       font-size: 0.875rem;
       color: var(--cor-texto-sec);
       line-height: 1.6;
-      margin: 0;
+      margin: 0 0 0.75rem;
+      display: none;
+    }
+
+    .card-arquivo p.card-texto.visivel {
+      display: block;
+    }
+
+    .card-ver-mais {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cor-texto-sec);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s;
+    }
+
+    .card-ver-mais:hover {
+      color: var(--cor-texto);
     }
 
     .card-arquivo-barra {
@@ -356,10 +369,11 @@
       font-weight: 200;
     }
 
-    /* Bloco de atenção */
+    /* Bloco de atenção — ajuste 11: sem borda extra */
     .bloco-atencao {
       background: #ffffff;
-      border: 1px solid var(--cor-cinza);
+      border: none;
+      box-shadow: none;
       border-left: 2px solid var(--cor-bege);
       padding: 1.25rem 1.5rem;
       margin-top: 1.25rem;
@@ -419,7 +433,7 @@
       margin-top: 0.2rem;
     }
 
-    /* Passos de instalação */
+    /* Passos de instalação — ajuste 11: sem borda */
     .passos {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -429,12 +443,13 @@
 
     .passo-card {
       background: #ffffff;
-      border: 1px solid var(--cor-cinza);
+      border: none;
+      box-shadow: none;
       padding: 1.5rem;
     }
 
     .secao-manual:nth-child(even) .passo-card {
-      background: #ffffff;
+      background: var(--cor-off-white);
     }
 
     .passo-num {
@@ -488,6 +503,32 @@
       font-size: 0.9375rem;
       color: #ffffff;
       line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Bloco de aviso (ajuste 6) */
+    .bloco-aviso {
+      background: var(--cor-off-white);
+      border-left: 2px solid var(--cor-bege);
+      padding: 1.5rem 1.75rem;
+      margin-top: 2rem;
+      margin-bottom: 0;
+    }
+
+    .bloco-aviso-titulo {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 300;
+      font-size: 0.9375rem;
+      color: var(--cor-texto);
+      margin: 0 0 0.5rem;
+    }
+
+    .bloco-aviso p {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.875rem;
+      color: var(--cor-texto-sec);
+      line-height: 1.65;
       margin: 0;
     }
 
@@ -613,10 +654,11 @@
       margin: 0 0 0.75rem;
     }
 
-    /* Info box */
+    /* Info box — ajuste 11: sem borda */
     .info-box {
       background: var(--cor-off-white);
-      border: 1px solid var(--cor-cinza);
+      border: none;
+      box-shadow: none;
       padding: 1.5rem;
       margin-top: 2rem;
     }
@@ -650,18 +692,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
       margin-top: 1.5rem;
-    }
-
-    /* Bloco decorativo da seção */
-    .secao-bloco-deco {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 120px;
-      height: 70px;
-      background: var(--cor-cinza);
-      opacity: 0.5;
-      pointer-events: none;
     }
 
     /* Tipografia */
@@ -746,42 +776,43 @@
       <div class="sidebar-logo">
         <img src="https://design.studiosolise.com.br/logos/logo-completo-preto.svg" alt="Studio Solise">
       </div>
+      <!-- Ajuste 3 e 4: numeração 00-06, ordem ícone → nome → número -->
       <nav class="sidebar-nav" aria-label="Seções do guia">
         <div class="sidebar-label">Guia de Uso</div>
         <a href="#apresentacao" class="sidebar-link ativo" data-secao="apresentacao">
-          <span class="sidebar-num">01</span>
           <i class="ph ph-file-pdf"></i>
-          Apresentação
+          <span class="sidebar-nome">Apresentação</span>
+          <span class="sidebar-num">00</span>
         </a>
         <a href="#logotipo" class="sidebar-link" data-secao="logotipo">
-          <span class="sidebar-num">02</span>
           <i class="ph ph-shapes"></i>
-          Logotipo
+          <span class="sidebar-nome">Logotipo</span>
+          <span class="sidebar-num">01</span>
         </a>
         <a href="#paleta" class="sidebar-link" data-secao="paleta">
-          <span class="sidebar-num">03</span>
           <i class="ph ph-palette"></i>
-          Paleta de Cores
+          <span class="sidebar-nome">Paleta de Cores</span>
+          <span class="sidebar-num">02</span>
         </a>
         <a href="#tipografias" class="sidebar-link" data-secao="tipografias">
-          <span class="sidebar-num">04</span>
           <i class="ph ph-text-aa"></i>
-          Tipografias
+          <span class="sidebar-nome">Tipografias</span>
+          <span class="sidebar-num">03</span>
         </a>
         <a href="#manual" class="sidebar-link" data-secao="manual">
-          <span class="sidebar-num">05</span>
           <i class="ph ph-book-open"></i>
-          Manual Técnico
+          <span class="sidebar-nome">Manual Técnico</span>
+          <span class="sidebar-num">04</span>
         </a>
         <a href="#certificado" class="sidebar-link" data-secao="certificado">
-          <span class="sidebar-num">06</span>
           <i class="ph ph-certificate"></i>
-          Certificado
+          <span class="sidebar-nome">Certificado</span>
+          <span class="sidebar-num">05</span>
         </a>
         <a href="#desdobramentos" class="sidebar-link" data-secao="desdobramentos">
-          <span class="sidebar-num">07</span>
           <i class="ph ph-squares-four"></i>
-          Desdobramentos
+          <span class="sidebar-nome">Desdobramentos</span>
+          <span class="sidebar-num">06</span>
         </a>
       </nav>
     </aside>
@@ -789,23 +820,21 @@
     <!-- Conteúdo principal -->
     <main class="main-content">
 
-      <!-- Hero -->
+      <!-- Hero — ajuste 1 e 5: sem blocos decorativos, subtítulo normal -->
       <section class="hero-manual" id="topo">
-        <div class="hero-bloco-bege"></div>
-        <div class="hero-bloco-cinza"></div>
         <div class="hero-label">Guia de Uso da Marca</div>
         <h1 class="hero-titulo">Seus arquivos,<br>explicados.</h1>
-        <p class="hero-subtitulo">Tudo que você precisa saber para usar sua identidade visual com confiança — em cada situação, em cada formato.</p>
+        <p class="hero-subtitulo">Tudo que você precisa saber para usar sua identidade visual com confiança, em cada situação e em cada formato.</p>
       </section>
 
-      <!-- Seção 1: Apresentação -->
+      <!-- Seção 00: Apresentação -->
       <section class="secao-manual" id="apresentacao">
         <div class="secao-topo">
           <div class="secao-icone-wrap">
             <i class="ph ph-file-pdf"></i>
           </div>
           <div class="secao-cabecalho">
-            <div class="secao-label">Pasta 01 · Apresentação</div>
+            <div class="secao-label">Pasta 00 · Apresentação</div>
             <h2 class="secao-titulo">Apresentação da Marca</h2>
             <p class="secao-intro">Esta pasta contém o documento completo da sua identidade visual e todas as imagens usadas nele, em alta resolução. São os dois materiais de maior impacto visual da entrega.</p>
           </div>
@@ -824,7 +853,8 @@
               <span class="card-formato-tag">PDF</span>
             </div>
             <h4>O que é</h4>
-            <p>O documento oficial e completo da sua identidade visual. Apresenta a marca, a lógica por trás das escolhas de design, e todas as aplicações desenvolvidas ao longo do projeto.</p>
+            <p class="card-texto">O documento oficial e completo da sua identidade visual. Apresenta a marca, a lógica por trás das escolhas de design, e todas as aplicações desenvolvidas ao longo do projeto.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -832,7 +862,8 @@
               <span class="card-formato-tag">Como abrir</span>
             </div>
             <h4>Abertura e compatibilidade</h4>
-            <p>Abra com o Adobe Acrobat Reader (gratuito) ou qualquer visualizador de PDF. No Mac, o Preview abre nativamente. No celular, qualquer app de PDF funciona.</p>
+            <p class="card-texto">Abra com o Adobe Acrobat Reader (gratuito) ou qualquer visualizador de PDF. No Mac, o Preview abre nativamente. No celular, qualquer app de PDF funciona.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -840,7 +871,8 @@
               <span class="card-formato-tag">Quando usar</span>
             </div>
             <h4>Onde e para quem enviar</h4>
-            <p>Envie para parceiros, fornecedores, impressoras e equipe interna que precisa conhecer a marca. É o documento de referência para quem vai trabalhar com a sua identidade visual.</p>
+            <p class="card-texto">Envie para parceiros, fornecedores, impressoras e equipe interna que precisa conhecer a marca. É o documento de referência para quem vai trabalhar com a sua identidade visual.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -857,7 +889,8 @@
               <span class="card-formato-tag">Imagens</span>
             </div>
             <h4>O que contém</h4>
-            <p>Todas as imagens usadas na apresentação, exportadas individualmente em alta resolução. São os mesmos visuais do PDF, prontos para reutilização em qualquer plataforma.</p>
+            <p class="card-texto">Todas as imagens usadas na apresentação, exportadas individualmente em alta resolução. São os mesmos visuais do PDF, prontos para reutilização em qualquer plataforma.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -865,7 +898,8 @@
               <span class="card-formato-tag">Redes Sociais</span>
             </div>
             <h4>Lançamento da marca</h4>
-            <p>Use essas imagens para criar postagens anunciando sua marca nova. São ideais para feed do Instagram, stories e reels de lançamento — já estão em alta qualidade, prontas para publicar.</p>
+            <p class="card-texto">Use essas imagens para criar postagens anunciando sua marca nova. São ideais para feed do Instagram, stories e reels de lançamento — já estão em alta qualidade, prontas para publicar.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -873,7 +907,8 @@
               <span class="card-formato-tag">Comunicação</span>
             </div>
             <h4>Material de apoio</h4>
-            <p>Envie para assessoria de imprensa, use em propostas comerciais, apresentações de negócio e qualquer outro contexto onde a marca precisa se apresentar com qualidade.</p>
+            <p class="card-texto">Envie para assessoria de imprensa, use em propostas comerciais, apresentações de negócio e qualquer outro contexto onde a marca precisa se apresentar com qualidade.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -889,14 +924,14 @@
 
       </section>
 
-      <!-- Seção 2: Logotipo -->
+      <!-- Seção 01: Logotipo -->
       <section class="secao-manual" id="logotipo">
         <div class="secao-topo">
           <div class="secao-icone-wrap">
             <i class="ph ph-shapes"></i>
           </div>
           <div class="secao-cabecalho">
-            <div class="secao-label">Pasta 02 · Logotipo</div>
+            <div class="secao-label">Pasta 01 · Logotipo</div>
             <h2 class="secao-titulo">Logotipo</h2>
             <p class="secao-intro">Esta pasta é organizada em quatro sub-pastas, cada uma com formatos específicos para contextos diferentes. Entender quando usar cada formato garante que o logo sempre apareça com a máxima qualidade possível.</p>
           </div>
@@ -905,7 +940,7 @@
         <!-- Sub-pasta: Vetorizado -->
         <div class="subpasta-titulo">
           <i class="ph ph-folder-open"></i>
-          <h3>Vetorizado — para profissionais e impressão</h3>
+          <h3>Vetorizado · para profissionais e impressão</h3>
           <div class="subpasta-linha"></div>
         </div>
 
@@ -916,7 +951,8 @@
               <span class="card-formato-tag">AI</span>
             </div>
             <h4>Adobe Illustrator</h4>
-            <p>Arquivo original e editável da marca. Use quando precisar enviar para um designer fazer adaptações, criar novos materiais ou escalar o logo para qualquer tamanho sem perda de qualidade. Requer Adobe Illustrator para abrir.</p>
+            <p class="card-texto">Arquivo original e editável da marca. Use quando precisar enviar para um designer fazer adaptações, criar novos materiais ou escalar o logo para qualquer tamanho sem perda de qualidade. Requer Adobe Illustrator para abrir.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -924,7 +960,8 @@
               <span class="card-formato-tag">EPS</span>
             </div>
             <h4>Vetorial universal</h4>
-            <p>Formato vetorial compatível com qualquer software profissional. Use para enviar para gráficas, agências e bureaus de impressão. Perfeito para aplicação em materiais físicos: embalagens, uniformes e banners.</p>
+            <p class="card-texto">Formato vetorial compatível com qualquer software profissional. Use para enviar para gráficas, agências e bureaus de impressão. Perfeito para aplicação em materiais físicos: embalagens, uniformes e banners.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -932,7 +969,8 @@
               <span class="card-formato-tag">PDF</span>
             </div>
             <h4>PDF vetorial</h4>
-            <p>Versão vetorial do logo em formato PDF. Use para enviar por e-mail quando precisar de qualidade profissional e a pessoa não tiver software de design. Imprime perfeitamente em qualquer escala.</p>
+            <p class="card-texto">Versão vetorial do logo em formato PDF. Use para enviar por e-mail quando precisar de qualidade profissional e a pessoa não tiver software de design. Imprime perfeitamente em qualquer escala.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -940,14 +978,15 @@
               <span class="card-formato-tag">PDF transparente</span>
             </div>
             <h4>PDF com fundo transparente</h4>
-            <p>Igual ao PDF vetorial, mas com fundo invisível. Use quando for inserir o logo em documentos, apresentações PowerPoint ou Google Slides — o fundo do logo desaparece e mostra o fundo da página.</p>
+            <p class="card-texto">Igual ao PDF vetorial, mas com fundo invisível. Use quando for inserir o logo em documentos, apresentações PowerPoint ou Google Slides — o fundo do logo desaparece e mostra o fundo da página.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
         <!-- Sub-pasta: Digital -->
         <div class="subpasta-titulo">
           <i class="ph ph-folder-open"></i>
-          <h3>Digital — para web e plataformas digitais</h3>
+          <h3>Digital · para web e plataformas digitais</h3>
           <div class="subpasta-linha"></div>
         </div>
 
@@ -958,7 +997,8 @@
               <span class="card-formato-tag">SVG</span>
             </div>
             <h4>Vetorial para web</h4>
-            <p>Formato vetorial ideal para site e aplicativos. O logo nunca perde qualidade em nenhum tamanho de tela. É o formato que desenvolvedores usam ao construir ou atualizar seu site.</p>
+            <p class="card-texto">Formato vetorial ideal para site e aplicativos. O logo nunca perde qualidade em nenhum tamanho de tela. É o formato que desenvolvedores usam ao construir ou atualizar seu site.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -966,14 +1006,15 @@
               <span class="card-formato-tag">WebP</span>
             </div>
             <h4>Imagem moderna e leve</h4>
-            <p>Formato de imagem otimizado para web. Use em plataformas que não aceitam SVG, como alguns construtores de site, formulários online e plataformas de e-commerce. Carrega mais rápido que PNG e mantém boa qualidade.</p>
+            <p class="card-texto">Formato de imagem otimizado para web. Use em plataformas que não aceitam SVG, como alguns construtores de site, formulários online e plataformas de e-commerce. Carrega mais rápido que PNG e mantém boa qualidade.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
         <!-- Sub-pasta: Fundo colorido -->
         <div class="subpasta-titulo">
           <i class="ph ph-folder-open"></i>
-          <h3>Fundo colorido — para uso em plataformas simples</h3>
+          <h3>Fundo colorido · para uso em plataformas simples</h3>
           <div class="subpasta-linha"></div>
         </div>
 
@@ -984,7 +1025,8 @@
               <span class="card-formato-tag">JPG</span>
             </div>
             <h4>Com fundo sólido</h4>
-            <p>Tem fundo branco ou colorido (conforme a versão). Use em sistemas de e-mail marketing ou plataformas mais antigas que não aceitam PNG. Atenção: não é possível remover o fundo de um JPG sem perda de qualidade.</p>
+            <p class="card-texto">Tem fundo branco ou colorido (conforme a versão). Use em sistemas de e-mail marketing ou plataformas mais antigas que não aceitam PNG. Atenção: não é possível remover o fundo de um JPG sem perda de qualidade.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -992,7 +1034,8 @@
               <span class="card-formato-tag">PNG</span>
             </div>
             <h4>PNG com fundo colorido</h4>
-            <p>Mesmo resultado visual do JPG, com levemente mais qualidade de cor. Use em redes sociais, apresentações e documentos quando o logo precisa estar sobre um fundo claro e você quer máxima qualidade.</p>
+            <p class="card-texto">Mesmo resultado visual do JPG, com levemente mais qualidade de cor. Use em redes sociais, apresentações e documentos quando o logo precisa estar sobre um fundo claro e você quer máxima qualidade.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -1003,7 +1046,7 @@
         <!-- Sub-pasta: Transparente -->
         <div class="subpasta-titulo">
           <i class="ph ph-folder-open"></i>
-          <h3>Transparente — o arquivo que você mais vai usar</h3>
+          <h3>Transparente · o arquivo que você mais vai usar</h3>
           <div class="subpasta-linha"></div>
         </div>
 
@@ -1014,7 +1057,8 @@
               <span class="card-formato-tag">PNG transparente</span>
             </div>
             <h4>O formato mais versátil</h4>
-            <p>O fundo do logo é invisível, adaptando-se a qualquer cor de fundo. Use em posts de redes sociais, stories, apresentações, documentos Word, banners e qualquer material onde o fundo não é branco. Este é o arquivo do dia a dia.</p>
+            <p class="card-texto">O fundo do logo é invisível, adaptando-se a qualquer cor de fundo. Use em posts de redes sociais, stories, apresentações, documentos Word, banners e qualquer material onde o fundo não é branco. Este é o arquivo do dia a dia.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -1031,14 +1075,14 @@
 
       </section>
 
-      <!-- Seção 3: Paleta de Cores -->
+      <!-- Seção 02: Paleta de Cores -->
       <section class="secao-manual" id="paleta">
         <div class="secao-topo">
           <div class="secao-icone-wrap">
             <i class="ph ph-palette"></i>
           </div>
           <div class="secao-cabecalho">
-            <div class="secao-label">Pasta 03 · Paleta de Cores</div>
+            <div class="secao-label">Pasta 02 · Paleta de Cores</div>
             <h2 class="secao-titulo">Paleta de Cores</h2>
             <p class="secao-intro">As cores da sua marca precisam ser aplicadas de forma consistente em todos os materiais. Esta pasta traz duas ferramentas para garantir isso: a tabela de contraste e os códigos de cor em todos os formatos necessários.</p>
           </div>
@@ -1047,7 +1091,7 @@
         <!-- Tabela de contraste -->
         <div class="subpasta-titulo">
           <i class="ph ph-folder-open"></i>
-          <h3>Uso em fundos — tabela de contraste</h3>
+          <h3>Uso em fundos · tabela de contraste</h3>
           <div class="subpasta-linha"></div>
         </div>
 
@@ -1058,7 +1102,8 @@
               <span class="card-formato-tag">Tabela</span>
             </div>
             <h4>O que é a tabela de contraste</h4>
-            <p>Um guia visual que mostra quais combinações de cor são legíveis e aprovadas para a sua marca, e quais combinações devem ser evitadas por prejudicar a leitura ou a identidade visual.</p>
+            <p class="card-texto">Um guia visual que mostra quais combinações de cor são legíveis e aprovadas para a sua marca, e quais combinações devem ser evitadas por prejudicar a leitura ou a identidade visual.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1066,7 +1111,8 @@
               <span class="card-formato-tag">Legibilidade</span>
             </div>
             <h4>Combinações aprovadas</h4>
-            <p>A tabela indica quais cores de texto funcionam sobre quais fundos. Exemplos: texto escuro em fundo claro, texto branco em fundo escuro. Combinações ruins como cinza claro sobre branco são marcadas como inadequadas.</p>
+            <p class="card-texto">A tabela indica quais cores de texto funcionam sobre quais fundos. Exemplos: texto escuro em fundo claro, texto branco em fundo escuro. Combinações ruins como cinza claro sobre branco são marcadas como inadequadas.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1074,7 +1120,8 @@
               <span class="card-formato-tag">Quando consultar</span>
             </div>
             <h4>Uso na prática</h4>
-            <p>Consulte sempre antes de criar qualquer material. Ao pedir um material para um designer, fornecedor ou agência, compartilhe a tabela junto com os arquivos de logo e as fontes.</p>
+            <p class="card-texto">Consulte sempre antes de criar qualquer material. Ao pedir um material para um designer, fornecedor ou agência, compartilhe a tabela junto com os arquivos de logo e as fontes.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -1090,7 +1137,7 @@
         <!-- Código de cores -->
         <div class="subpasta-titulo">
           <i class="ph ph-folder-open"></i>
-          <h3>Código de cores — onde e como usar cada tipo</h3>
+          <h3>Código de cores · onde e como usar cada tipo</h3>
           <div class="subpasta-linha"></div>
         </div>
 
@@ -1132,14 +1179,14 @@
 
       </section>
 
-      <!-- Seção 4: Tipografias -->
+      <!-- Seção 03: Tipografias -->
       <section class="secao-manual" id="tipografias">
         <div class="secao-topo">
           <div class="secao-icone-wrap">
             <i class="ph ph-text-aa"></i>
           </div>
           <div class="secao-cabecalho">
-            <div class="secao-label">Pasta 04 · Tipografias</div>
+            <div class="secao-label">Pasta 03 · Tipografias</div>
             <h2 class="secao-titulo">Tipografias</h2>
             <p class="secao-intro">As fontes da sua marca são parte fundamental da identidade visual. Esta pasta contém o documento de hierarquia tipográfica e os arquivos de fonte para instalar no seu computador.</p>
           </div>
@@ -1152,7 +1199,8 @@
               <span class="card-formato-tag">PDF</span>
             </div>
             <h4>Hierarquia tipográfica</h4>
-            <p>Documento que mostra qual fonte usar em cada situação da marca: qual é para título, qual é para corpo de texto, qual é para destaque e legenda. Consulte sempre que criar qualquer material de comunicação.</p>
+            <p class="card-texto">Documento que mostra qual fonte usar em cada situação da marca: qual é para título, qual é para corpo de texto, qual é para destaque e legenda. Consulte sempre que criar qualquer material de comunicação.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1160,7 +1208,8 @@
               <span class="card-formato-tag">Fontes</span>
             </div>
             <h4>Arquivos de fonte</h4>
-            <p>Arquivos para instalar as fontes da marca no seu computador. Após instaladas, ficam disponíveis em todos os programas: Word, PowerPoint, Canva Pro, Photoshop e outros.</p>
+            <p class="card-texto">Arquivos para instalar as fontes da marca no seu computador. Após instaladas, ficam disponíveis em todos os programas: Word, PowerPoint, Canva Pro, Photoshop e outros.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -1199,14 +1248,14 @@
 
       </section>
 
-      <!-- Seção 5: Manual Técnico -->
+      <!-- Seção 04: Manual Técnico -->
       <section class="secao-manual" id="manual">
         <div class="secao-topo">
           <div class="secao-icone-wrap">
             <i class="ph ph-book-open"></i>
           </div>
           <div class="secao-cabecalho">
-            <div class="secao-label">Pasta 05 · Manual Técnico da Marca</div>
+            <div class="secao-label">Pasta 04 · Manual Técnico da Marca</div>
             <h2 class="secao-titulo">Manual Técnico da Marca</h2>
             <p class="secao-intro">O manual técnico é o documento mais completo e detalhado da sua identidade visual. É a referência oficial para qualquer pessoa que precise criar materiais para a sua marca.</p>
           </div>
@@ -1219,7 +1268,8 @@
               <span class="card-formato-tag">O que contém</span>
             </div>
             <h4>Conteúdo completo</h4>
-            <p>Variações do logo, espaçamentos mínimos obrigatórios, exemplos de uso correto e incorreto do logo, especificações de cores em todos os formatos (HEX, RGB, CMYK, Pantone), especificações tipográficas e exemplos de aplicação em diferentes fundos.</p>
+            <p class="card-texto">Variações do logo, espaçamentos mínimos obrigatórios, exemplos de uso correto e incorreto do logo, especificações de cores em todos os formatos (HEX, RGB, CMYK, Pantone), especificações tipográficas e exemplos de aplicação em diferentes fundos.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1227,7 +1277,8 @@
               <span class="card-formato-tag">Designers</span>
             </div>
             <h4>Documento de referência</h4>
-            <p>Envie para qualquer designer, agência ou freelancer que for criar materiais para a marca. É o documento que garante que o trabalho deles esteja alinhado com a identidade aprovada — sem necessidade de revisões por problemas básicos de aplicação.</p>
+            <p class="card-texto">Envie para qualquer designer, agência ou freelancer que for criar materiais para a marca. É o documento que garante que o trabalho deles esteja alinhado com a identidade aprovada, sem necessidade de revisões por problemas básicos de aplicação.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1235,7 +1286,8 @@
               <span class="card-formato-tag">Fornecedores</span>
             </div>
             <h4>Para gráficas e produtoras</h4>
-            <p>Compartilhe com gráficas e fornecedores de materiais impressos. O manual especifica as cores em CMYK e Pantone, e os espaçamentos mínimos do logo, garantindo que o produto final saia correto.</p>
+            <p class="card-texto">Compartilhe com gráficas e fornecedores de materiais impressos. O manual especifica as cores em CMYK e Pantone, e os espaçamentos mínimos do logo, garantindo que o produto final saia correto.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -1284,14 +1336,14 @@
 
       </section>
 
-      <!-- Seção 6: Certificado -->
+      <!-- Seção 05: Certificado -->
       <section class="secao-manual" id="certificado">
         <div class="secao-topo">
           <div class="secao-icone-wrap">
             <i class="ph ph-certificate"></i>
           </div>
           <div class="secao-cabecalho">
-            <div class="secao-label">Pasta 06 · Certificado de Anterioridade</div>
+            <div class="secao-label">Pasta 05 · Certificado de Anterioridade</div>
             <h2 class="secao-titulo">Certificado de Anterioridade</h2>
             <p class="secao-intro">Um documento digital que comprova que a sua identidade visual existia em uma data e hora específicas. Funciona como uma certidão de nascimento oficial da sua marca.</p>
           </div>
@@ -1304,7 +1356,8 @@
               <span class="card-formato-tag">O que é</span>
             </div>
             <h4>Registro com data oficial</h4>
-            <p>Um certificado digital emitido pela plataforma it'sMine!, que registra que os seus arquivos de logo existiam em uma data e hora específicas, com um timestamp oficial emitido por entidade regulada pelo governo.</p>
+            <p class="card-texto">Um certificado digital emitido pela plataforma it'sMine!, que registra que os seus arquivos de logo existiam em uma data e hora específicas, com um timestamp oficial emitido por entidade regulada pelo governo.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1312,7 +1365,8 @@
               <span class="card-formato-tag">Como funciona</span>
             </div>
             <h4>Tecnologia SHA-256</h4>
-            <p>A plataforma gera um código único (hash SHA-256) a partir dos seus arquivos de logo. Esse código é matematicamente único para aqueles arquivos — qualquer alteração geraria um código completamente diferente. O código é registrado com o timestamp oficial.</p>
+            <p class="card-texto">A plataforma gera um código único (hash SHA-256) a partir dos seus arquivos de logo. Esse código é matematicamente único para aqueles arquivos — qualquer alteração geraria um código completamente diferente. O código é registrado com o timestamp oficial.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1320,7 +1374,8 @@
               <span class="card-formato-tag">Para que serve</span>
             </div>
             <h4>Proteção em disputas</h4>
-            <p>Se alguém alegar que criou uma identidade visual igual antes de você, você tem prova documental com data e hora de que a sua existia primeiro. É impossível falsificar esse registro sem que o código hash seja diferente.</p>
+            <p class="card-texto">Se alguém alegar que criou uma identidade visual igual antes de você, você tem prova documental com data e hora de que a sua existia primeiro. É impossível falsificar esse registro sem que o código hash seja diferente.</p>
+            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -1365,14 +1420,14 @@
 
       </section>
 
-      <!-- Seção 7: Desdobramentos -->
+      <!-- Seção 06: Desdobramentos -->
       <section class="secao-manual" id="desdobramentos">
         <div class="secao-topo">
           <div class="secao-icone-wrap">
             <i class="ph ph-squares-four"></i>
           </div>
           <div class="secao-cabecalho">
-            <div class="secao-label">Pasta 07 · Desdobramentos</div>
+            <div class="secao-label">Pasta 06 · Desdobramentos</div>
             <h2 class="secao-titulo">Desdobramentos</h2>
             <p class="secao-intro">Esta pasta contém as peças de papelaria e os materiais de comunicação já criados com a identidade visual da sua marca, prontos para uso imediato. Cada arquivo foi desenvolvido para funcionar de forma independente, sem necessidade de ajustes.</p>
           </div>
@@ -1433,6 +1488,12 @@
           </div>
         </div>
 
+        <!-- Ajuste 6: aviso de impressão de teste -->
+        <div class="bloco-aviso">
+          <div class="bloco-aviso-titulo">Faça sempre uma impressão de teste</div>
+          <p>Antes de aprovar a tiragem final de qualquer material, solicite uma prova de impressão. Verifique cores, margens, sangria e qualidade do acabamento. Pequenas variações de impressora para impressora podem ocorrer, e a prova evita retrabalho e desperdício.</p>
+        </div>
+
         <div class="regra-ouro">
           <i class="ph ph-warning"></i>
           <p><strong style="color: var(--cor-bege); font-weight: 300;">Regra de ouro dos desdobramentos:</strong> Nunca altere as cores, fontes ou proporções dos materiais. Esses elementos foram definidos para funcionar juntos e garantir a consistência da marca. Em caso de dúvida sobre adaptações ou necessidade de criar novos materiais, consulte o Studio Solise.</p>
@@ -1450,11 +1511,11 @@
 
       </section>
 
-      <!-- Rodapé -->
+      <!-- Rodapé — ajuste 7 e 8 -->
       <footer class="rodape-manual">
         <img src="https://design.studiosolise.com.br/logos/logo-completo-cinza.svg" alt="Studio Solise">
-        <span class="rodape-info">Manual de Uso da Marca · 2025</span>
-        <a href="mailto:contato@studiosolise.com.br" class="rodape-contato">Dúvidas? Fale com o Studio Solise</a>
+        <span class="rodape-info">Manual de Uso da Marca · 2026</span>
+        <a href="https://wa.me/5538991312502?text=Fiquei%20em%20d%C3%BAvida%20sobre%20como%20usar%20a%20marca." class="rodape-contato" target="_blank" rel="noopener noreferrer">Dúvidas? Fale com o Studio Solise</a>
       </footer>
 
     </main>
@@ -1512,6 +1573,21 @@
         // Abrir o clicado, se estava fechado
         if (!estaAberto) {
           item.classList.add('aberto');
+        }
+      });
+    });
+
+    // Ajuste 2: Ver mais / Recolher nos cards
+    document.querySelectorAll('.card-ver-mais').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.card-arquivo');
+        const texto = card.querySelector('.card-texto');
+        if (texto.classList.contains('visivel')) {
+          texto.classList.remove('visivel');
+          btn.textContent = 'Ver mais';
+        } else {
+          texto.classList.add('visivel');
+          btn.textContent = 'Recolher';
         }
       });
     });
