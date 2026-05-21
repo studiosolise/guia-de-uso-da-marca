@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Uso da Marca</title>
+  <link rel="stylesheet" href="https://design.studiosolise.com.br/solise-ds.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    /* Layout de sidebar fixa */
+    .layout-wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 100vh;
+      background: #ffffff;
+      border-right: 1px solid var(--cor-cinza);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 2rem 1.75rem 1.5rem;
+      border-bottom: 1px solid var(--cor-cinza);
+    }
+
+    .sidebar-logo img {
+      height: 32px;
+      width: auto;
+    }
+
+    .sidebar-nav {
+      padding: 1.5rem 0;
+      flex: 1;
+    }
+
+    .sidebar-label {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.625rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cor-texto-sec);
+      padding: 0 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 1.75rem;
+      text-decoration: none;
+      color: var(--cor-texto-sec);
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.875rem;
+      transition: color 0.2s, background 0.2s;
+      border-left: 2px solid transparent;
+    }
+
+    .sidebar-link:hover {
+      color: var(--cor-texto);
+      background: var(--cor-off-white);
+    }
+
+    .sidebar-link.ativo {
+      color: var(--cor-texto);
+      border-left-color: #0c0c0c;
+      background: var(--cor-off-white);
+    }
+
+    .sidebar-link i {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .sidebar-num {
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      color: var(--cor-bege);
+      font-weight: 200;
+      margin-right: auto;
+    }
+
+    /* Conteúdo principal */
+    .main-content {
+      margin-left: 260px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Hero */
+    .hero-manual {
+      background: #ffffff;
+      padding: 6rem 4rem 5rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--cor-cinza);
+    }
+
+    .hero-bloco-bege {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 220px;
+      height: 140px;
+      background: var(--cor-bege);
+      opacity: 0.5;
+    }
+
+    .hero-bloco-cinza {
+      position: absolute;
+      bottom: 0;
+      right: 180px;
+      width: 100px;
+      height: 60px;
+      background: var(--cor-cinza);
+    }
+
+    .hero-label {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--cor-texto-sec);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-titulo {
+      font-size: clamp(2.5rem, 4vw, 3.75rem);
+      color: var(--cor-texto);
+      margin-bottom: 1.25rem;
+      max-width: 560px;
+    }
+
+    .hero-subtitulo {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 1.0625rem;
+      color: var(--cor-texto-sec);
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    /* Seções */
+    .secao-manual {
+      padding: 5rem 4rem;
+      border-bottom: 1px solid var(--cor-cinza);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .secao-manual:nth-child(even) {
+      background: var(--cor-off-white);
+    }
+
+    .secao-topo {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .secao-icone-wrap {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cor-cinza);
+      flex-shrink: 0;
+    }
+
+    .secao-icone-wrap i {
+      font-size: 1.5rem;
+      color: var(--cor-texto);
+    }
+
+    .secao-cabecalho {
+      flex: 1;
+    }
+
+    .secao-label {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--cor-texto-sec);
+      margin-bottom: 0.5rem;
+    }
+
+    .secao-titulo {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      color: var(--cor-texto);
+      margin-bottom: 0.75rem;
+    }
+
+    .secao-intro {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 1rem;
+      color: var(--cor-texto-sec);
+      line-height: 1.65;
+      max-width: 640px;
+    }
+
+    /* Cards de arquivo */
+    .grade-arquivos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .card-arquivo {
+      background: #ffffff;
+      border: 1px solid var(--cor-cinza);
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .secao-manual:nth-child(even) .card-arquivo {
+      background: #ffffff;
+    }
+
+    .card-arquivo-top {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-formato-tag {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--cor-off-white);
+      color: var(--cor-texto);
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--cor-cinza);
+    }
+
+    .card-arquivo h4 {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 1rem;
+      color: var(--cor-texto);
+      margin: 0 0 0.5rem;
+    }
+
+    .card-arquivo p {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.875rem;
+      color: var(--cor-texto-sec);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .card-arquivo-barra {
+      position: absolute;
+      left: 0;
+      top: 1.25rem;
+      bottom: 1.25rem;
+      width: 2px;
+      background: #0c0c0c;
+    }
+
+    /* Sub-pasta heading */
+    .subpasta-titulo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 2.5rem 0 1rem;
+    }
+
+    .subpasta-titulo i {
+      font-size: 1.1rem;
+      color: var(--cor-texto-sec);
+    }
+
+    .subpasta-titulo h3 {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cor-texto);
+      margin: 0;
+    }
+
+    .subpasta-linha {
+      flex: 1;
+      height: 1px;
+      background: var(--cor-cinza);
+    }
+
+    /* Bloco de exemplos */
+    .bloco-exemplos {
+      background: var(--cor-off-white);
+      border-left: 2px solid #0c0c0c;
+      padding: 1.5rem 1.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .secao-manual:nth-child(even) .bloco-exemplos {
+      background: #ffffff;
+    }
+
+    .bloco-exemplos-label {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.625rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--cor-texto-sec);
+      margin-bottom: 1rem;
+    }
+
+    .bloco-exemplos ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .bloco-exemplos ul li {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.9375rem;
+      color: var(--cor-texto);
+      padding: 0.4rem 0;
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .bloco-exemplos ul li::before {
+      content: "|";
+      position: absolute;
+      left: 0;
+      color: var(--cor-bege);
+      font-weight: 200;
+    }
+
+    /* Bloco de atenção */
+    .bloco-atencao {
+      background: #ffffff;
+      border: 1px solid var(--cor-cinza);
+      border-left: 2px solid var(--cor-bege);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .bloco-atencao p {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.875rem;
+      color: var(--cor-texto-sec);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .bloco-atencao strong {
+      color: var(--cor-texto);
+      font-weight: 300;
+    }
+
+    /* Tabela de cores */
+    .tabela-codigos {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+    }
+
+    .tabela-codigos th {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cor-texto-sec);
+      text-align: left;
+      padding: 0.5rem 1rem 0.5rem 0;
+      border-bottom: 1px solid var(--cor-cinza);
+    }
+
+    .tabela-codigos td {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.875rem;
+      color: var(--cor-texto);
+      padding: 0.875rem 1rem 0.875rem 0;
+      border-bottom: 1px solid var(--cor-cinza);
+      vertical-align: top;
+    }
+
+    .tabela-codigos td:first-child {
+      font-weight: 300;
+      color: var(--cor-texto);
+    }
+
+    .tabela-codigos td .uso-desc {
+      color: var(--cor-texto-sec);
+      font-size: 0.8125rem;
+      margin-top: 0.2rem;
+    }
+
+    /* Passos de instalação */
+    .passos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .passo-card {
+      background: #ffffff;
+      border: 1px solid var(--cor-cinza);
+      padding: 1.5rem;
+    }
+
+    .secao-manual:nth-child(even) .passo-card {
+      background: #ffffff;
+    }
+
+    .passo-num {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.625rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cor-bege);
+      margin-bottom: 0.5rem;
+    }
+
+    .passo-card h4 {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.9375rem;
+      color: var(--cor-texto);
+      margin: 0 0 0.5rem;
+    }
+
+    .passo-card p {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.875rem;
+      color: var(--cor-texto-sec);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Regra de ouro */
+    .regra-ouro {
+      background: #0c0c0c;
+      color: #ffffff;
+      padding: 1.75rem 2rem;
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .regra-ouro i {
+      font-size: 1.25rem;
+      color: var(--cor-bege);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .regra-ouro p {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.9375rem;
+      color: #ffffff;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Hambúrguer mobile */
+    .menu-hamburguer {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 200;
+      background: #ffffff;
+      border: 1px solid var(--cor-cinza);
+      padding: 0.6rem;
+      cursor: pointer;
+    }
+
+    .menu-hamburguer i {
+      font-size: 1.25rem;
+      color: var(--cor-texto);
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 99;
+    }
+
+    /* Rodapé */
+    .rodape-manual {
+      background: #0c0c0c;
+      padding: 3rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .rodape-manual img {
+      height: 28px;
+      width: auto;
+    }
+
+    .rodape-info {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #898989;
+    }
+
+    .rodape-contato {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.8125rem;
+      color: #898989;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .rodape-contato:hover {
+      color: #ffffff;
+    }
+
+    /* Accordion */
+    .accordion-manual {
+      margin-top: 2rem;
+      border-top: 1px solid var(--cor-cinza);
+    }
+
+    .accordion-item-manual {
+      border-bottom: 1px solid var(--cor-cinza);
+    }
+
+    .accordion-gatilho-manual {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      text-align: left;
+    }
+
+    .accordion-gatilho-manual span {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.9375rem;
+      color: var(--cor-texto);
+    }
+
+    .accordion-gatilho-manual i {
+      font-size: 1rem;
+      color: var(--cor-texto-sec);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .accordion-item-manual.aberto .accordion-gatilho-manual i {
+      transform: rotate(180deg);
+    }
+
+    .accordion-corpo-manual {
+      display: none;
+      padding: 0 0 1.5rem;
+    }
+
+    .accordion-item-manual.aberto .accordion-corpo-manual {
+      display: block;
+    }
+
+    .accordion-corpo-manual p {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.9rem;
+      color: var(--cor-texto-sec);
+      line-height: 1.65;
+      margin: 0 0 0.75rem;
+    }
+
+    /* Info box */
+    .info-box {
+      background: var(--cor-off-white);
+      border: 1px solid var(--cor-cinza);
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .info-box-titulo {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--cor-texto-sec);
+      margin-bottom: 0.75rem;
+    }
+
+    .info-box p {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.9rem;
+      color: var(--cor-texto);
+      line-height: 1.65;
+      margin: 0 0 0.5rem;
+    }
+
+    .info-box p:last-child {
+      margin: 0;
+    }
+
+    /* Dois cols */
+    .dois-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Bloco decorativo da seção */
+    .secao-bloco-deco {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 70px;
+      background: var(--cor-cinza);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* Tipografia */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 400;
+    }
+
+    /* Scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsivo */
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+      }
+
+      .sidebar.aberta {
+        transform: translateX(0);
+      }
+
+      .sidebar-overlay.visivel {
+        display: block;
+      }
+
+      .menu-hamburguer {
+        display: flex;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .hero-manual,
+      .secao-manual {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .grade-arquivos {
+        grid-template-columns: 1fr;
+      }
+
+      .passos {
+        grid-template-columns: 1fr;
+      }
+
+      .dois-cols {
+        grid-template-columns: 1fr;
+      }
+
+      .rodape-manual {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-titulo {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu hambúrguer mobile -->
+  <button class="menu-hamburguer" id="btnMenu" aria-label="Abrir menu">
+    <i class="ph ph-list"></i>
+  </button>
+
+  <!-- Overlay mobile -->
+  <div class="sidebar-overlay" id="overlay"></div>
+
+  <div class="layout-wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <img src="https://design.studiosolise.com.br/logos/logo-completo-preto.svg" alt="Studio Solise">
+      </div>
+      <nav class="sidebar-nav" aria-label="Seções do guia">
+        <div class="sidebar-label">Guia de Uso</div>
+        <a href="#apresentacao" class="sidebar-link ativo" data-secao="apresentacao">
+          <span class="sidebar-num">01</span>
+          <i class="ph ph-file-pdf"></i>
+          Apresentação
+        </a>
+        <a href="#logotipo" class="sidebar-link" data-secao="logotipo">
+          <span class="sidebar-num">02</span>
+          <i class="ph ph-shapes"></i>
+          Logotipo
+        </a>
+        <a href="#paleta" class="sidebar-link" data-secao="paleta">
+          <span class="sidebar-num">03</span>
+          <i class="ph ph-palette"></i>
+          Paleta de Cores
+        </a>
+        <a href="#tipografias" class="sidebar-link" data-secao="tipografias">
+          <span class="sidebar-num">04</span>
+          <i class="ph ph-text-aa"></i>
+          Tipografias
+        </a>
+        <a href="#manual" class="sidebar-link" data-secao="manual">
+          <span class="sidebar-num">05</span>
+          <i class="ph ph-book-open"></i>
+          Manual Técnico
+        </a>
+        <a href="#certificado" class="sidebar-link" data-secao="certificado">
+          <span class="sidebar-num">06</span>
+          <i class="ph ph-certificate"></i>
+          Certificado
+        </a>
+        <a href="#desdobramentos" class="sidebar-link" data-secao="desdobramentos">
+          <span class="sidebar-num">07</span>
+          <i class="ph ph-squares-four"></i>
+          Desdobramentos
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="main-content">
+
+      <!-- Hero -->
+      <section class="hero-manual" id="topo">
+        <div class="hero-bloco-bege"></div>
+        <div class="hero-bloco-cinza"></div>
+        <div class="hero-label">Guia de Uso da Marca</div>
+        <h1 class="hero-titulo">Seus arquivos,<br>explicados.</h1>
+        <p class="hero-subtitulo">Tudo que você precisa saber para usar sua identidade visual com confiança — em cada situação, em cada formato.</p>
+      </section>
+
+      <!-- Seção 1: Apresentação -->
+      <section class="secao-manual" id="apresentacao">
+        <div class="secao-topo">
+          <div class="secao-icone-wrap">
+            <i class="ph ph-file-pdf"></i>
+          </div>
+          <div class="secao-cabecalho">
+            <div class="secao-label">Pasta 01 · Apresentação</div>
+            <h2 class="secao-titulo">Apresentação da Marca</h2>
+            <p class="secao-intro">Esta pasta contém o documento completo da sua identidade visual e todas as imagens usadas nele, em alta resolução. São os dois materiais de maior impacto visual da entrega.</p>
+          </div>
+        </div>
+
+        <div class="subpasta-titulo">
+          <i class="ph ph-folder-open"></i>
+          <h3>PDF da Apresentação</h3>
+          <div class="subpasta-linha"></div>
+        </div>
+
+        <div class="grade-arquivos">
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">PDF</span>
+            </div>
+            <h4>O que é</h4>
+            <p>O documento oficial e completo da sua identidade visual. Apresenta a marca, a lógica por trás das escolhas de design, e todas as aplicações desenvolvidas ao longo do projeto.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Como abrir</span>
+            </div>
+            <h4>Abertura e compatibilidade</h4>
+            <p>Abra com o Adobe Acrobat Reader (gratuito) ou qualquer visualizador de PDF. No Mac, o Preview abre nativamente. No celular, qualquer app de PDF funciona.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Quando usar</span>
+            </div>
+            <h4>Onde e para quem enviar</h4>
+            <p>Envie para parceiros, fornecedores, impressoras e equipe interna que precisa conhecer a marca. É o documento de referência para quem vai trabalhar com a sua identidade visual.</p>
+          </div>
+        </div>
+
+        <div class="subpasta-titulo">
+          <i class="ph ph-folder-open"></i>
+          <h3>Pasta de Imagens da Apresentação</h3>
+          <div class="subpasta-linha"></div>
+        </div>
+
+        <div class="grade-arquivos">
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Imagens</span>
+            </div>
+            <h4>O que contém</h4>
+            <p>Todas as imagens usadas na apresentação, exportadas individualmente em alta resolução. São os mesmos visuais do PDF, prontos para reutilização em qualquer plataforma.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Redes Sociais</span>
+            </div>
+            <h4>Lançamento da marca</h4>
+            <p>Use essas imagens para criar postagens anunciando sua marca nova. São ideais para feed do Instagram, stories e reels de lançamento — já estão em alta qualidade, prontas para publicar.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Comunicação</span>
+            </div>
+            <h4>Material de apoio</h4>
+            <p>Envie para assessoria de imprensa, use em propostas comerciais, apresentações de negócio e qualquer outro contexto onde a marca precisa se apresentar com qualidade.</p>
+          </div>
+        </div>
+
+        <div class="bloco-exemplos">
+          <div class="bloco-exemplos-label">Exemplos de uso</div>
+          <ul>
+            <li>Quando for apresentar sua marca para um novo parceiro, envie o PDF da apresentação antes da reunião</li>
+            <li>Quando for postar sobre o lançamento da sua marca no Instagram, use as imagens desta pasta</li>
+            <li>Ao contratar um designer para criar novos materiais, compartilhe o PDF para que ele entenda a identidade completa</li>
+            <li>Em uma proposta comercial que inclua apresentação da empresa, insira as imagens desta pasta para reforçar a identidade</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Seção 2: Logotipo -->
+      <section class="secao-manual" id="logotipo">
+        <div class="secao-topo">
+          <div class="secao-icone-wrap">
+            <i class="ph ph-shapes"></i>
+          </div>
+          <div class="secao-cabecalho">
+            <div class="secao-label">Pasta 02 · Logotipo</div>
+            <h2 class="secao-titulo">Logotipo</h2>
+            <p class="secao-intro">Esta pasta é organizada em quatro sub-pastas, cada uma com formatos específicos para contextos diferentes. Entender quando usar cada formato garante que o logo sempre apareça com a máxima qualidade possível.</p>
+          </div>
+        </div>
+
+        <!-- Sub-pasta: Vetorizado -->
+        <div class="subpasta-titulo">
+          <i class="ph ph-folder-open"></i>
+          <h3>Vetorizado — para profissionais e impressão</h3>
+          <div class="subpasta-linha"></div>
+        </div>
+
+        <div class="grade-arquivos">
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">AI</span>
+            </div>
+            <h4>Adobe Illustrator</h4>
+            <p>Arquivo original e editável da marca. Use quando precisar enviar para um designer fazer adaptações, criar novos materiais ou escalar o logo para qualquer tamanho sem perda de qualidade. Requer Adobe Illustrator para abrir.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">EPS</span>
+            </div>
+            <h4>Vetorial universal</h4>
+            <p>Formato vetorial compatível com qualquer software profissional. Use para enviar para gráficas, agências e bureaus de impressão. Perfeito para aplicação em materiais físicos: embalagens, uniformes e banners.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">PDF</span>
+            </div>
+            <h4>PDF vetorial</h4>
+            <p>Versão vetorial do logo em formato PDF. Use para enviar por e-mail quando precisar de qualidade profissional e a pessoa não tiver software de design. Imprime perfeitamente em qualquer escala.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">PDF transparente</span>
+            </div>
+            <h4>PDF com fundo transparente</h4>
+            <p>Igual ao PDF vetorial, mas com fundo invisível. Use quando for inserir o logo em documentos, apresentações PowerPoint ou Google Slides — o fundo do logo desaparece e mostra o fundo da página.</p>
+          </div>
+        </div>
+
+        <!-- Sub-pasta: Digital -->
+        <div class="subpasta-titulo">
+          <i class="ph ph-folder-open"></i>
+          <h3>Digital — para web e plataformas digitais</h3>
+          <div class="subpasta-linha"></div>
+        </div>
+
+        <div class="grade-arquivos">
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">SVG</span>
+            </div>
+            <h4>Vetorial para web</h4>
+            <p>Formato vetorial ideal para site e aplicativos. O logo nunca perde qualidade em nenhum tamanho de tela. É o formato que desenvolvedores usam ao construir ou atualizar seu site.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">WebP</span>
+            </div>
+            <h4>Imagem moderna e leve</h4>
+            <p>Formato de imagem otimizado para web. Use em plataformas que não aceitam SVG, como alguns construtores de site, formulários online e plataformas de e-commerce. Carrega mais rápido que PNG e mantém boa qualidade.</p>
+          </div>
+        </div>
+
+        <!-- Sub-pasta: Fundo colorido -->
+        <div class="subpasta-titulo">
+          <i class="ph ph-folder-open"></i>
+          <h3>Fundo colorido — para uso em plataformas simples</h3>
+          <div class="subpasta-linha"></div>
+        </div>
+
+        <div class="grade-arquivos">
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">JPG</span>
+            </div>
+            <h4>Com fundo sólido</h4>
+            <p>Tem fundo branco ou colorido (conforme a versão). Use em sistemas de e-mail marketing ou plataformas mais antigas que não aceitam PNG. Atenção: não é possível remover o fundo de um JPG sem perda de qualidade.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">PNG</span>
+            </div>
+            <h4>PNG com fundo colorido</h4>
+            <p>Mesmo resultado visual do JPG, com levemente mais qualidade de cor. Use em redes sociais, apresentações e documentos quando o logo precisa estar sobre um fundo claro e você quer máxima qualidade.</p>
+          </div>
+        </div>
+
+        <div class="bloco-atencao">
+          <p><strong>JPG vs PNG, na prática:</strong> O PNG é superior em qualidade e permite transparência. O JPG produz arquivos menores. Para uso digital cotidiano, prefira sempre PNG quando disponível.</p>
+        </div>
+
+        <!-- Sub-pasta: Transparente -->
+        <div class="subpasta-titulo">
+          <i class="ph ph-folder-open"></i>
+          <h3>Transparente — o arquivo que você mais vai usar</h3>
+          <div class="subpasta-linha"></div>
+        </div>
+
+        <div class="grade-arquivos">
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">PNG transparente</span>
+            </div>
+            <h4>O formato mais versátil</h4>
+            <p>O fundo do logo é invisível, adaptando-se a qualquer cor de fundo. Use em posts de redes sociais, stories, apresentações, documentos Word, banners e qualquer material onde o fundo não é branco. Este é o arquivo do dia a dia.</p>
+          </div>
+        </div>
+
+        <div class="bloco-exemplos">
+          <div class="bloco-exemplos-label">Exemplos de uso</div>
+          <ul>
+            <li>Para criar um post no Instagram: PNG transparente ou PNG com fundo colorido</li>
+            <li>Para enviar para uma gráfica fazer banners ou embalagens: EPS ou AI</li>
+            <li>Para adicionar o logo em uma apresentação PowerPoint: PDF transparente ou PNG transparente</li>
+            <li>Para o desenvolvedor colocar no site: SVG</li>
+            <li>Para enviar para um designer criar novos materiais: AI (arquivo original)</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Seção 3: Paleta de Cores -->
+      <section class="secao-manual" id="paleta">
+        <div class="secao-topo">
+          <div class="secao-icone-wrap">
+            <i class="ph ph-palette"></i>
+          </div>
+          <div class="secao-cabecalho">
+            <div class="secao-label">Pasta 03 · Paleta de Cores</div>
+            <h2 class="secao-titulo">Paleta de Cores</h2>
+            <p class="secao-intro">As cores da sua marca precisam ser aplicadas de forma consistente em todos os materiais. Esta pasta traz duas ferramentas para garantir isso: a tabela de contraste e os códigos de cor em todos os formatos necessários.</p>
+          </div>
+        </div>
+
+        <!-- Tabela de contraste -->
+        <div class="subpasta-titulo">
+          <i class="ph ph-folder-open"></i>
+          <h3>Uso em fundos — tabela de contraste</h3>
+          <div class="subpasta-linha"></div>
+        </div>
+
+        <div class="grade-arquivos">
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Tabela</span>
+            </div>
+            <h4>O que é a tabela de contraste</h4>
+            <p>Um guia visual que mostra quais combinações de cor são legíveis e aprovadas para a sua marca, e quais combinações devem ser evitadas por prejudicar a leitura ou a identidade visual.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Legibilidade</span>
+            </div>
+            <h4>Combinações aprovadas</h4>
+            <p>A tabela indica quais cores de texto funcionam sobre quais fundos. Exemplos: texto escuro em fundo claro, texto branco em fundo escuro. Combinações ruins como cinza claro sobre branco são marcadas como inadequadas.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Quando consultar</span>
+            </div>
+            <h4>Uso na prática</h4>
+            <p>Consulte sempre antes de criar qualquer material. Ao pedir um material para um designer, fornecedor ou agência, compartilhe a tabela junto com os arquivos de logo e as fontes.</p>
+          </div>
+        </div>
+
+        <div class="bloco-exemplos">
+          <div class="bloco-exemplos-label">Exemplos de uso</div>
+          <ul>
+            <li>Antes de criar um post, consulte a tabela para confirmar se o texto é legível sobre o fundo colorido escolhido</li>
+            <li>Ao pedir um material para um fornecedor ou designer, compartilhe esta tabela como referência obrigatória</li>
+            <li>Ao criar um banner ou outdoor, use a tabela para garantir que as cores escolhidas funcionem em grande formato</li>
+          </ul>
+        </div>
+
+        <!-- Código de cores -->
+        <div class="subpasta-titulo">
+          <i class="ph ph-folder-open"></i>
+          <h3>Código de cores — onde e como usar cada tipo</h3>
+          <div class="subpasta-linha"></div>
+        </div>
+
+        <table class="tabela-codigos">
+          <thead>
+            <tr>
+              <th>Tipo de código</th>
+              <th>Para que serve</th>
+              <th>Onde usar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>HEX<br><span class="uso-desc">#000000</span></td>
+              <td>Uso digital</td>
+              <td>Web, redes sociais, apresentações, qualquer tela. Cole diretamente no Canva, PowerPoint, Google Slides e sites.</td>
+            </tr>
+            <tr>
+              <td>RGB<br><span class="uso-desc">0, 0, 0</span></td>
+              <td>Uso digital</td>
+              <td>Alguns programas pedem RGB em vez de HEX. O resultado visual é idêntico — use quando a plataforma solicitar este formato.</td>
+            </tr>
+            <tr>
+              <td>CMYK<br><span class="uso-desc">0, 0, 0, 100</span></td>
+              <td>Impressão</td>
+              <td>Informe sempre o CMYK ao pedir materiais impressos em gráficas ou bureaus de impressão. É o padrão da indústria gráfica.</td>
+            </tr>
+            <tr>
+              <td>Pantone<br><span class="uso-desc">PANTONE 000</span></td>
+              <td>Impressão de precisão</td>
+              <td>Usado em uniformes, embalagens e brindes onde a cor precisa ser exata. Consulte seu fornecedor se este código é necessário para o material.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="bloco-atencao">
+          <p><strong>Dica prática:</strong> Para o dia a dia digital, use sempre o HEX. Para qualquer material impresso, informe o CMYK. O Pantone é para situações onde a precisão de cor é crítica, como uniformes e embalagens de produto.</p>
+        </div>
+
+      </section>
+
+      <!-- Seção 4: Tipografias -->
+      <section class="secao-manual" id="tipografias">
+        <div class="secao-topo">
+          <div class="secao-icone-wrap">
+            <i class="ph ph-text-aa"></i>
+          </div>
+          <div class="secao-cabecalho">
+            <div class="secao-label">Pasta 04 · Tipografias</div>
+            <h2 class="secao-titulo">Tipografias</h2>
+            <p class="secao-intro">As fontes da sua marca são parte fundamental da identidade visual. Esta pasta contém o documento de hierarquia tipográfica e os arquivos de fonte para instalar no seu computador.</p>
+          </div>
+        </div>
+
+        <div class="grade-arquivos">
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">PDF</span>
+            </div>
+            <h4>Hierarquia tipográfica</h4>
+            <p>Documento que mostra qual fonte usar em cada situação da marca: qual é para título, qual é para corpo de texto, qual é para destaque e legenda. Consulte sempre que criar qualquer material de comunicação.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Fontes</span>
+            </div>
+            <h4>Arquivos de fonte</h4>
+            <p>Arquivos para instalar as fontes da marca no seu computador. Após instaladas, ficam disponíveis em todos os programas: Word, PowerPoint, Canva Pro, Photoshop e outros.</p>
+          </div>
+        </div>
+
+        <div class="subpasta-titulo">
+          <i class="ph ph-download"></i>
+          <h3>Como instalar as fontes</h3>
+          <div class="subpasta-linha"></div>
+        </div>
+
+        <div class="passos">
+          <div class="passo-card">
+            <div class="passo-num">Mac · macOS</div>
+            <h4>Instalação no Mac</h4>
+            <p>Dê duplo clique no arquivo de fonte (extensão .otf ou .ttf). Uma janela de prévia abrirá. Clique no botão "Instalar fonte" no canto inferior. A fonte fica disponível imediatamente em todos os programas abertos após a instalação.</p>
+          </div>
+          <div class="passo-card">
+            <div class="passo-num">Windows · 10 e 11</div>
+            <h4>Instalação no Windows</h4>
+            <p>Clique com o botão direito no arquivo de fonte. No menu que aparece, selecione "Instalar" para instalar só para o seu usuário, ou "Instalar para todos os usuários" para que todos do computador possam usar. Reinicie os programas abertos.</p>
+          </div>
+        </div>
+
+        <div class="bloco-exemplos">
+          <div class="bloco-exemplos-label">Exemplos de uso</div>
+          <ul>
+            <li>Ao criar uma apresentação no PowerPoint, instale as fontes primeiro para que o material fique com a identidade visual correta</li>
+            <li>Ao criar um post no Canva, use a versão Pro que permite upload de fontes personalizadas — faça o upload dos arquivos desta pasta</li>
+            <li>Ao contratar um designer ou agência para criar materiais, compartilhe a pasta de fontes junto com o logo e o manual técnico</li>
+            <li>Ao redigir uma proposta comercial no Word, instale as fontes e use a hierarquia do documento como guia</li>
+          </ul>
+        </div>
+
+        <div class="bloco-atencao">
+          <p><strong>Importante:</strong> Em ferramentas gratuitas como o Canva versão gratuita, não é possível fazer upload de fontes. Neste caso, escolha a fonte mais próxima disponível na plataforma. Para materiais oficiais da marca, use sempre o Canva Pro ou um designer com as fontes instaladas.</p>
+        </div>
+
+      </section>
+
+      <!-- Seção 5: Manual Técnico -->
+      <section class="secao-manual" id="manual">
+        <div class="secao-topo">
+          <div class="secao-icone-wrap">
+            <i class="ph ph-book-open"></i>
+          </div>
+          <div class="secao-cabecalho">
+            <div class="secao-label">Pasta 05 · Manual Técnico da Marca</div>
+            <h2 class="secao-titulo">Manual Técnico da Marca</h2>
+            <p class="secao-intro">O manual técnico é o documento mais completo e detalhado da sua identidade visual. É a referência oficial para qualquer pessoa que precise criar materiais para a sua marca.</p>
+          </div>
+        </div>
+
+        <div class="grade-arquivos">
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">O que contém</span>
+            </div>
+            <h4>Conteúdo completo</h4>
+            <p>Variações do logo, espaçamentos mínimos obrigatórios, exemplos de uso correto e incorreto do logo, especificações de cores em todos os formatos (HEX, RGB, CMYK, Pantone), especificações tipográficas e exemplos de aplicação em diferentes fundos.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Designers</span>
+            </div>
+            <h4>Documento de referência</h4>
+            <p>Envie para qualquer designer, agência ou freelancer que for criar materiais para a marca. É o documento que garante que o trabalho deles esteja alinhado com a identidade aprovada — sem necessidade de revisões por problemas básicos de aplicação.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Fornecedores</span>
+            </div>
+            <h4>Para gráficas e produtoras</h4>
+            <p>Compartilhe com gráficas e fornecedores de materiais impressos. O manual especifica as cores em CMYK e Pantone, e os espaçamentos mínimos do logo, garantindo que o produto final saia correto.</p>
+          </div>
+        </div>
+
+        <div class="accordion-manual">
+          <div class="accordion-item-manual">
+            <button class="accordion-gatilho-manual">
+              <span>Por que o manual técnico é importante</span>
+              <i class="ph ph-caret-down"></i>
+            </button>
+            <div class="accordion-corpo-manual">
+              <p>Quando diferentes pessoas criam materiais para a mesma marca sem uma referência comum, o resultado é inconsistência: logos distorcidos, cores erradas, fontes substituídas por similares. Com o tempo, a marca perde força e reconhecimento.</p>
+              <p>O manual técnico resolve isso. Ele estabelece as regras de forma clara e visual, para que qualquer profissional possa seguir sem precisar perguntar. É o que garante que um cartão de visita, um post no Instagram e o site da empresa "falem" a mesma linguagem visual.</p>
+            </div>
+          </div>
+          <div class="accordion-item-manual">
+            <button class="accordion-gatilho-manual">
+              <span>O que são os espaçamentos mínimos do logo</span>
+              <i class="ph ph-caret-down"></i>
+            </button>
+            <div class="accordion-corpo-manual">
+              <p>O manual define uma área de proteção ao redor do logo: o espaço mínimo que deve existir entre o logo e outros elementos visuais (textos, imagens, bordas). Isso garante que o logo respire e não fique "sufocado" por outros elementos, preservando sua leitura e impacto.</p>
+              <p>Ao pedir um material para qualquer profissional, mencione que eles devem respeitar o espaçamento mínimo definido no manual técnico.</p>
+            </div>
+          </div>
+          <div class="accordion-item-manual">
+            <button class="accordion-gatilho-manual">
+              <span>O que são os usos incorretos do logo</span>
+              <i class="ph ph-caret-down"></i>
+            </button>
+            <div class="accordion-corpo-manual">
+              <p>Esta seção do manual mostra, com exemplos visuais, o que nunca deve ser feito com o logo: esticar, comprimir, girar, aplicar em fundos que comprometem a leitura, alterar as cores, adicionar efeitos como sombra ou gradiente.</p>
+              <p>Mostre essa seção para designers e fornecedores antes de iniciar qualquer trabalho. Ela evita erros comuns que comprometem a identidade visual da marca.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bloco-exemplos">
+          <div class="bloco-exemplos-label">Quando enviar o manual técnico</div>
+          <ul>
+            <li>Ao contratar um designer, agência ou freelancer para criar qualquer material</li>
+            <li>Ao solicitar materiais para uma gráfica, produtora ou fornecedor de brindes</li>
+            <li>Ao integrar um novo parceiro ou colaborador que precisa representar a marca</li>
+            <li>Sempre que tiver dúvida sobre como aplicar a marca em uma situação nova</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Seção 6: Certificado -->
+      <section class="secao-manual" id="certificado">
+        <div class="secao-topo">
+          <div class="secao-icone-wrap">
+            <i class="ph ph-certificate"></i>
+          </div>
+          <div class="secao-cabecalho">
+            <div class="secao-label">Pasta 06 · Certificado de Anterioridade</div>
+            <h2 class="secao-titulo">Certificado de Anterioridade</h2>
+            <p class="secao-intro">Um documento digital que comprova que a sua identidade visual existia em uma data e hora específicas. Funciona como uma certidão de nascimento oficial da sua marca.</p>
+          </div>
+        </div>
+
+        <div class="grade-arquivos">
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">O que é</span>
+            </div>
+            <h4>Registro com data oficial</h4>
+            <p>Um certificado digital emitido pela plataforma it'sMine!, que registra que os seus arquivos de logo existiam em uma data e hora específicas, com um timestamp oficial emitido por entidade regulada pelo governo.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Como funciona</span>
+            </div>
+            <h4>Tecnologia SHA-256</h4>
+            <p>A plataforma gera um código único (hash SHA-256) a partir dos seus arquivos de logo. Esse código é matematicamente único para aqueles arquivos — qualquer alteração geraria um código completamente diferente. O código é registrado com o timestamp oficial.</p>
+          </div>
+          <div class="card-arquivo">
+            <div class="card-arquivo-barra"></div>
+            <div class="card-arquivo-top">
+              <span class="card-formato-tag">Para que serve</span>
+            </div>
+            <h4>Proteção em disputas</h4>
+            <p>Se alguém alegar que criou uma identidade visual igual antes de você, você tem prova documental com data e hora de que a sua existia primeiro. É impossível falsificar esse registro sem que o código hash seja diferente.</p>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-titulo">Onde guardar o certificado</div>
+          <p>Guarde em local seguro e em mais de um lugar. Recomendamos: Google Drive ou iCloud pessoal, HD externo e um e-mail enviado para si mesmo com o arquivo em anexo.</p>
+          <p>Guarde junto com todos os arquivos originais da marca, na mesma pasta ou em uma pasta de "Documentos da Marca".</p>
+        </div>
+
+        <div class="accordion-manual">
+          <div class="accordion-item-manual">
+            <button class="accordion-gatilho-manual">
+              <span>O certificado substitui o registro no INPI?</span>
+              <i class="ph ph-caret-down"></i>
+            </button>
+            <div class="accordion-corpo-manual">
+              <p>Não. O certificado de anterioridade e o registro de marca no INPI (Instituto Nacional da Propriedade Industrial) são documentos diferentes, com finalidades complementares.</p>
+              <p>O certificado prova que a marca existia em uma data específica. O registro no INPI confere o direito exclusivo de uso da marca no Brasil em uma determinada categoria de produto ou serviço. Para proteção completa, o ideal é ter os dois.</p>
+              <p>Se você ainda não registrou sua marca no INPI, considere iniciar esse processo. O certificado de anterioridade que você possui agora fortalece a sua posição nesse registro.</p>
+            </div>
+          </div>
+          <div class="accordion-item-manual">
+            <button class="accordion-gatilho-manual">
+              <span>Quando apresentar o certificado</span>
+              <i class="ph ph-caret-down"></i>
+            </button>
+            <div class="accordion-corpo-manual">
+              <p>Em caso de disputa judicial sobre autoria ou uso indevido da marca, o certificado é uma das provas que você pode apresentar junto com outros documentos.</p>
+              <p>Também pode ser apresentado ao negociar licenciamento da marca, como prova de autoria para parceiros estratégicos e investidores, e em processos de valoração de marca para fins contábeis ou de fusão e aquisição.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bloco-exemplos">
+          <div class="bloco-exemplos-label">Como usar na prática</div>
+          <ul>
+            <li>Guarde o certificado junto com os arquivos originais da marca e nunca os perca</li>
+            <li>Se alguém usar uma identidade visual muito similar à sua, o certificado é parte da sua evidência legal</li>
+            <li>Ao apresentar sua marca para investidores ou parceiros, o certificado demonstra que você tem documentação e cuidado com a propriedade intelectual</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Seção 7: Desdobramentos -->
+      <section class="secao-manual" id="desdobramentos">
+        <div class="secao-topo">
+          <div class="secao-icone-wrap">
+            <i class="ph ph-squares-four"></i>
+          </div>
+          <div class="secao-cabecalho">
+            <div class="secao-label">Pasta 07 · Desdobramentos</div>
+            <h2 class="secao-titulo">Desdobramentos</h2>
+            <p class="secao-intro">Esta pasta contém as peças de papelaria e os materiais de comunicação já criados com a identidade visual da sua marca, prontos para uso imediato. Cada arquivo foi desenvolvido para funcionar de forma independente, sem necessidade de ajustes.</p>
+          </div>
+        </div>
+
+        <div class="accordion-manual">
+          <div class="accordion-item-manual">
+            <button class="accordion-gatilho-manual">
+              <span>Cartão de visita</span>
+              <i class="ph ph-caret-down"></i>
+            </button>
+            <div class="accordion-corpo-manual">
+              <p>Leve o arquivo para uma gráfica de confiança. Para o resultado mais alinhado com a identidade visual, recomendamos papel couchê 300g com acabamento em verniz localizado ou laminação fosca.</p>
+              <p>Sempre peça uma prova física (ou digital) antes de autorizar a tiragem completa. Confira as cores, o texto e o acabamento antes de aprovar a produção em quantidade.</p>
+            </div>
+          </div>
+          <div class="accordion-item-manual">
+            <button class="accordion-gatilho-manual">
+              <span>Papel timbrado</span>
+              <i class="ph ph-caret-down"></i>
+            </button>
+            <div class="accordion-corpo-manual">
+              <p>Use no Word ou Google Docs ao redigir propostas, contratos e comunicações oficiais. O arquivo original deve ser mantido como template — nunca edite diretamente nele. Crie uma cópia do arquivo para cada novo documento que precisar escrever.</p>
+              <p>Se possível, bloqueie o arquivo original com senha para evitar alterações acidentais no layout, deixando apenas o conteúdo editável.</p>
+            </div>
+          </div>
+          <div class="accordion-item-manual">
+            <button class="accordion-gatilho-manual">
+              <span>Assinatura de e-mail</span>
+              <i class="ph ph-caret-down"></i>
+            </button>
+            <div class="accordion-corpo-manual">
+              <p>Siga as instruções específicas que acompanham o arquivo para instalar a assinatura no seu cliente de e-mail. O processo varia conforme a plataforma:</p>
+              <p>No Gmail: Configurações, aba Geral, seção Assinatura. Cole o conteúdo ou o código HTML conforme indicado no arquivo de instruções.</p>
+              <p>No Outlook: Arquivo, Opções, E-mail, Assinaturas. Crie uma nova assinatura e cole o conteúdo.</p>
+              <p>No Apple Mail: Mail, Configurações, aba Assinaturas. Arraste o arquivo HTML para a área de assinaturas ou cole o conteúdo.</p>
+            </div>
+          </div>
+          <div class="accordion-item-manual">
+            <button class="accordion-gatilho-manual">
+              <span>Templates de apresentação</span>
+              <i class="ph ph-caret-down"></i>
+            </button>
+            <div class="accordion-corpo-manual">
+              <p>Abra no PowerPoint ou Google Slides e substitua apenas o conteúdo: textos, imagens e dados. Nunca altere fontes, cores, proporções dos elementos ou posição dos elementos fixos de layout.</p>
+              <p>Assim como o papel timbrado, mantenha o arquivo original intocado e crie cópias para cada apresentação nova. Isso garante que você sempre tenha um template limpo disponível.</p>
+            </div>
+          </div>
+          <div class="accordion-item-manual">
+            <button class="accordion-gatilho-manual">
+              <span>Pasta e envelope</span>
+              <i class="ph ph-caret-down"></i>
+            </button>
+            <div class="accordion-corpo-manual">
+              <p>Leve os arquivos para uma gráfica especializada em papelaria corporativa. Esses materiais geralmente têm especificações de papel e acabamento mais exigentes — peça sempre orientação ao fornecedor antes de aprovar a produção.</p>
+              <p>Informe ao fornecedor os códigos de cor CMYK da sua paleta (disponíveis na pasta de códigos de cor) para garantir que as cores saiam corretas na impressão.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="regra-ouro">
+          <i class="ph ph-warning"></i>
+          <p><strong style="color: var(--cor-bege); font-weight: 300;">Regra de ouro dos desdobramentos:</strong> Nunca altere as cores, fontes ou proporções dos materiais. Esses elementos foram definidos para funcionar juntos e garantir a consistência da marca. Em caso de dúvida sobre adaptações ou necessidade de criar novos materiais, consulte o Studio Solise.</p>
+        </div>
+
+        <div class="bloco-exemplos">
+          <div class="bloco-exemplos-label">Para lembrar</div>
+          <ul>
+            <li>Sempre mantenha os arquivos originais dos templates intocados — trabalhe sempre em cópias</li>
+            <li>Ao levar qualquer material para impressão, informe os códigos CMYK das cores da sua marca</li>
+            <li>Peça sempre uma prova antes de aprovar a tiragem final de qualquer material impresso</li>
+            <li>Ao criar materiais novos que não estão nesta pasta, consulte o Studio Solise para garantir consistência</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Rodapé -->
+      <footer class="rodape-manual">
+        <img src="https://design.studiosolise.com.br/logos/logo-completo-cinza.svg" alt="Studio Solise">
+        <span class="rodape-info">Manual de Uso da Marca · 2025</span>
+        <a href="mailto:contato@studiosolise.com.br" class="rodape-contato">Dúvidas? Fale com o Studio Solise</a>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    // Menu hambúrguer mobile
+    const btnMenu = document.getElementById('btnMenu');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    function abrirMenu() {
+      sidebar.classList.add('aberta');
+      overlay.classList.add('visivel');
+      btnMenu.querySelector('i').className = 'ph ph-x';
+    }
+
+    function fecharMenu() {
+      sidebar.classList.remove('aberta');
+      overlay.classList.remove('visivel');
+      btnMenu.querySelector('i').className = 'ph ph-list';
+    }
+
+    btnMenu.addEventListener('click', () => {
+      if (sidebar.classList.contains('aberta')) {
+        fecharMenu();
+      } else {
+        abrirMenu();
+      }
+    });
+
+    overlay.addEventListener('click', fecharMenu);
+
+    // Fechar menu ao clicar em link (mobile)
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 900) {
+          fecharMenu();
+        }
+      });
+    });
+
+    // Acordeões
+    document.querySelectorAll('.accordion-gatilho-manual').forEach(gatilho => {
+      gatilho.addEventListener('click', () => {
+        const item = gatilho.closest('.accordion-item-manual');
+        const estaAberto = item.classList.contains('aberto');
+
+        // Fechar todos os outros do mesmo grupo
+        const grupo = item.closest('.accordion-manual');
+        grupo.querySelectorAll('.accordion-item-manual').forEach(i => {
+          i.classList.remove('aberto');
+        });
+
+        // Abrir o clicado, se estava fechado
+        if (!estaAberto) {
+          item.classList.add('aberto');
+        }
+      });
+    });
+
+    // Seção ativa na sidebar ao fazer scroll
+    const secoes = document.querySelectorAll('.secao-manual');
+    const links = document.querySelectorAll('.sidebar-link');
+
+    function atualizarAtivo() {
+      let secaoAtiva = '';
+      const offsetTopo = 120;
+
+      secoes.forEach(secao => {
+        const topo = secao.getBoundingClientRect().top;
+        if (topo <= offsetTopo) {
+          secaoAtiva = secao.id;
+        }
+      });
+
+      links.forEach(link => {
+        link.classList.remove('ativo');
+        if (link.getAttribute('data-secao') === secaoAtiva) {
+          link.classList.add('ativo');
+        }
+      });
+
+      // Se nenhuma seção ativa (no topo da página)
+      if (!secaoAtiva) {
+        links[0].classList.add('ativo');
+      }
+    }
+
+    window.addEventListener('scroll', atualizarAtivo, { passive: true });
+    atualizarAtivo();
+
+    // Scroll suave com offset para a sidebar
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const alvo = document.querySelector(href);
+        if (alvo) {
+          e.preventDefault();
+          const offset = 40;
+          const topo = alvo.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: topo, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
