@@ -134,6 +134,7 @@
       font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
       font-weight: 200;
       font-size: 1rem;
+      letter-spacing: 0.01em;
       color: var(--cor-texto-sec);
       max-width: 500px;
       line-height: 1.6;
@@ -251,7 +252,6 @@
       margin: 0 0 0.5rem;
     }
 
-    /* Ajuste 2: texto do card oculto por padrão */
     .card-arquivo p.card-texto {
       font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
       font-weight: 200;
@@ -259,29 +259,6 @@
       color: var(--cor-texto-sec);
       line-height: 1.6;
       margin: 0 0 0.75rem;
-      display: none;
-    }
-
-    .card-arquivo p.card-texto.visivel {
-      display: block;
-    }
-
-    .card-ver-mais {
-      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
-      font-weight: 200;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--cor-texto-sec);
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: color 0.2s;
-    }
-
-    .card-ver-mais:hover {
-      color: var(--cor-texto);
     }
 
     .card-arquivo-barra {
@@ -320,6 +297,30 @@
       flex: 1;
       height: 1px;
       background: var(--cor-cinza);
+    }
+
+    /* Accordion de subgrupos */
+    .subgrupo-header {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .subgrupo-header .ph-caret-down {
+      transition: transform 0.3s ease;
+      font-size: 0.875rem;
+      color: var(--cor-texto-sec);
+    }
+
+    .subgrupo-header.recolhido .ph-caret-down {
+      transform: rotate(-90deg);
+    }
+
+    .subgrupo-conteudo {
+      overflow: hidden;
+      transition: max-height 0.35s ease;
     }
 
     /* Bloco de exemplos */
@@ -840,75 +841,75 @@
           </div>
         </div>
 
-        <div class="subpasta-titulo">
+        <div class="subpasta-titulo subgrupo-header">
           <i class="ph ph-folder-open"></i>
           <h3>PDF da Apresentação</h3>
           <div class="subpasta-linha"></div>
+          <i class="ph ph-caret-down"></i>
         </div>
 
-        <div class="grade-arquivos">
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">PDF</span>
+        <div class="subgrupo-conteudo">
+          <div class="grade-arquivos">
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">PDF</span>
+              </div>
+              <h4>O que é</h4>
+              <p class="card-texto">O documento oficial e completo da sua identidade visual. Apresenta a marca, a lógica por trás das escolhas de design, e todas as aplicações desenvolvidas ao longo do projeto.</p>
             </div>
-            <h4>O que é</h4>
-            <p class="card-texto">O documento oficial e completo da sua identidade visual. Apresenta a marca, a lógica por trás das escolhas de design, e todas as aplicações desenvolvidas ao longo do projeto.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">Como abrir</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">Como abrir</span>
+              </div>
+              <h4>Abertura e compatibilidade</h4>
+              <p class="card-texto">Abra com o Adobe Acrobat Reader (gratuito) ou qualquer visualizador de PDF. No Mac, o Preview abre nativamente. No celular, qualquer app de PDF funciona.</p>
             </div>
-            <h4>Abertura e compatibilidade</h4>
-            <p class="card-texto">Abra com o Adobe Acrobat Reader (gratuito) ou qualquer visualizador de PDF. No Mac, o Preview abre nativamente. No celular, qualquer app de PDF funciona.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">Quando usar</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">Quando usar</span>
+              </div>
+              <h4>Onde e para quem enviar</h4>
+              <p class="card-texto">Envie para parceiros, fornecedores, impressoras e equipe interna que precisa conhecer a marca. É o documento de referência para quem vai trabalhar com a sua identidade visual.</p>
             </div>
-            <h4>Onde e para quem enviar</h4>
-            <p class="card-texto">Envie para parceiros, fornecedores, impressoras e equipe interna que precisa conhecer a marca. É o documento de referência para quem vai trabalhar com a sua identidade visual.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
-        <div class="subpasta-titulo">
+        <div class="subpasta-titulo subgrupo-header">
           <i class="ph ph-folder-open"></i>
           <h3>Pasta de Imagens da Apresentação</h3>
           <div class="subpasta-linha"></div>
+          <i class="ph ph-caret-down"></i>
         </div>
 
-        <div class="grade-arquivos">
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">Imagens</span>
+        <div class="subgrupo-conteudo">
+          <div class="grade-arquivos">
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">Imagens</span>
+              </div>
+              <h4>O que contém</h4>
+              <p class="card-texto">Todas as imagens usadas na apresentação, exportadas individualmente em alta resolução. São os mesmos visuais do PDF, prontos para reutilização em qualquer plataforma.</p>
             </div>
-            <h4>O que contém</h4>
-            <p class="card-texto">Todas as imagens usadas na apresentação, exportadas individualmente em alta resolução. São os mesmos visuais do PDF, prontos para reutilização em qualquer plataforma.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">Redes Sociais</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">Redes Sociais</span>
+              </div>
+              <h4>Lançamento da marca</h4>
+              <p class="card-texto">Use essas imagens para criar postagens anunciando sua marca nova. São ideais para feed do Instagram, stories e reels de lançamento — já estão em alta qualidade, prontas para publicar.</p>
             </div>
-            <h4>Lançamento da marca</h4>
-            <p class="card-texto">Use essas imagens para criar postagens anunciando sua marca nova. São ideais para feed do Instagram, stories e reels de lançamento — já estão em alta qualidade, prontas para publicar.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">Comunicação</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">Comunicação</span>
+              </div>
+              <h4>Material de apoio</h4>
+              <p class="card-texto">Envie para assessoria de imprensa, use em propostas comerciais, apresentações de negócio e qualquer outro contexto onde a marca precisa se apresentar com qualidade.</p>
             </div>
-            <h4>Material de apoio</h4>
-            <p class="card-texto">Envie para assessoria de imprensa, use em propostas comerciais, apresentações de negócio e qualquer outro contexto onde a marca precisa se apresentar com qualidade.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -938,127 +939,130 @@
         </div>
 
         <!-- Sub-pasta: Vetorizado -->
-        <div class="subpasta-titulo">
+        <div class="subpasta-titulo subgrupo-header">
           <i class="ph ph-folder-open"></i>
           <h3>Vetorizado · para profissionais e impressão</h3>
           <div class="subpasta-linha"></div>
+          <i class="ph ph-caret-down"></i>
         </div>
 
-        <div class="grade-arquivos">
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">AI</span>
+        <div class="subgrupo-conteudo">
+          <div class="grade-arquivos">
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">AI</span>
+              </div>
+              <h4>Adobe Illustrator</h4>
+              <p class="card-texto">Arquivo original e editável da marca. Use quando precisar enviar para um designer fazer adaptações, criar novos materiais ou escalar o logo para qualquer tamanho sem perda de qualidade. Requer Adobe Illustrator para abrir.</p>
             </div>
-            <h4>Adobe Illustrator</h4>
-            <p class="card-texto">Arquivo original e editável da marca. Use quando precisar enviar para um designer fazer adaptações, criar novos materiais ou escalar o logo para qualquer tamanho sem perda de qualidade. Requer Adobe Illustrator para abrir.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">EPS</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">EPS</span>
+              </div>
+              <h4>Vetorial universal</h4>
+              <p class="card-texto">Formato vetorial compatível com qualquer software profissional. Use para enviar para gráficas, agências e bureaus de impressão. Perfeito para aplicação em materiais físicos: embalagens, uniformes e banners.</p>
             </div>
-            <h4>Vetorial universal</h4>
-            <p class="card-texto">Formato vetorial compatível com qualquer software profissional. Use para enviar para gráficas, agências e bureaus de impressão. Perfeito para aplicação em materiais físicos: embalagens, uniformes e banners.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">PDF</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">PDF</span>
+              </div>
+              <h4>PDF vetorial</h4>
+              <p class="card-texto">Versão vetorial do logo em formato PDF. Use para enviar por e-mail quando precisar de qualidade profissional e a pessoa não tiver software de design. Imprime perfeitamente em qualquer escala.</p>
             </div>
-            <h4>PDF vetorial</h4>
-            <p class="card-texto">Versão vetorial do logo em formato PDF. Use para enviar por e-mail quando precisar de qualidade profissional e a pessoa não tiver software de design. Imprime perfeitamente em qualquer escala.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">PDF transparente</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">PDF transparente</span>
+              </div>
+              <h4>PDF com fundo transparente</h4>
+              <p class="card-texto">Igual ao PDF vetorial, mas com fundo invisível. Use quando for inserir o logo em documentos, apresentações PowerPoint ou Google Slides — o fundo do logo desaparece e mostra o fundo da página.</p>
             </div>
-            <h4>PDF com fundo transparente</h4>
-            <p class="card-texto">Igual ao PDF vetorial, mas com fundo invisível. Use quando for inserir o logo em documentos, apresentações PowerPoint ou Google Slides — o fundo do logo desaparece e mostra o fundo da página.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
         <!-- Sub-pasta: Digital -->
-        <div class="subpasta-titulo">
+        <div class="subpasta-titulo subgrupo-header">
           <i class="ph ph-folder-open"></i>
           <h3>Digital · para web e plataformas digitais</h3>
           <div class="subpasta-linha"></div>
+          <i class="ph ph-caret-down"></i>
         </div>
 
-        <div class="grade-arquivos">
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">SVG</span>
+        <div class="subgrupo-conteudo">
+          <div class="grade-arquivos">
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">SVG</span>
+              </div>
+              <h4>Vetorial para web</h4>
+              <p class="card-texto">Formato vetorial ideal para site e aplicativos. O logo nunca perde qualidade em nenhum tamanho de tela. É o formato que desenvolvedores usam ao construir ou atualizar seu site.</p>
             </div>
-            <h4>Vetorial para web</h4>
-            <p class="card-texto">Formato vetorial ideal para site e aplicativos. O logo nunca perde qualidade em nenhum tamanho de tela. É o formato que desenvolvedores usam ao construir ou atualizar seu site.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">WebP</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">WebP</span>
+              </div>
+              <h4>Imagem moderna e leve</h4>
+              <p class="card-texto">Formato de imagem otimizado para web. Use em plataformas que não aceitam SVG, como alguns construtores de site, formulários online e plataformas de e-commerce. Carrega mais rápido que PNG e mantém boa qualidade.</p>
             </div>
-            <h4>Imagem moderna e leve</h4>
-            <p class="card-texto">Formato de imagem otimizado para web. Use em plataformas que não aceitam SVG, como alguns construtores de site, formulários online e plataformas de e-commerce. Carrega mais rápido que PNG e mantém boa qualidade.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
         <!-- Sub-pasta: Fundo colorido -->
-        <div class="subpasta-titulo">
+        <div class="subpasta-titulo subgrupo-header">
           <i class="ph ph-folder-open"></i>
           <h3>Fundo colorido · para uso em plataformas simples</h3>
           <div class="subpasta-linha"></div>
+          <i class="ph ph-caret-down"></i>
         </div>
 
-        <div class="grade-arquivos">
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">JPG</span>
+        <div class="subgrupo-conteudo">
+          <div class="grade-arquivos">
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">JPG</span>
+              </div>
+              <h4>Com fundo sólido</h4>
+              <p class="card-texto">Tem fundo branco ou colorido (conforme a versão). Use em sistemas de e-mail marketing ou plataformas mais antigas que não aceitam PNG. Atenção: não é possível remover o fundo de um JPG sem perda de qualidade.</p>
             </div>
-            <h4>Com fundo sólido</h4>
-            <p class="card-texto">Tem fundo branco ou colorido (conforme a versão). Use em sistemas de e-mail marketing ou plataformas mais antigas que não aceitam PNG. Atenção: não é possível remover o fundo de um JPG sem perda de qualidade.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">PNG</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">PNG</span>
+              </div>
+              <h4>PNG com fundo colorido</h4>
+              <p class="card-texto">Mesmo resultado visual do JPG, com levemente mais qualidade de cor. Use em redes sociais, apresentações e documentos quando o logo precisa estar sobre um fundo claro e você quer máxima qualidade.</p>
             </div>
-            <h4>PNG com fundo colorido</h4>
-            <p class="card-texto">Mesmo resultado visual do JPG, com levemente mais qualidade de cor. Use em redes sociais, apresentações e documentos quando o logo precisa estar sobre um fundo claro e você quer máxima qualidade.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
-        </div>
 
-        <div class="bloco-atencao">
-          <p><strong>JPG vs PNG, na prática:</strong> O PNG é superior em qualidade e permite transparência. O JPG produz arquivos menores. Para uso digital cotidiano, prefira sempre PNG quando disponível.</p>
+          <div class="bloco-atencao">
+            <p><strong>JPG vs PNG, na prática:</strong> O PNG é superior em qualidade e permite transparência. O JPG produz arquivos menores. Para uso digital cotidiano, prefira sempre PNG quando disponível.</p>
+          </div>
         </div>
 
         <!-- Sub-pasta: Transparente -->
-        <div class="subpasta-titulo">
+        <div class="subpasta-titulo subgrupo-header">
           <i class="ph ph-folder-open"></i>
           <h3>Transparente · o arquivo que você mais vai usar</h3>
           <div class="subpasta-linha"></div>
+          <i class="ph ph-caret-down"></i>
         </div>
 
-        <div class="grade-arquivos">
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">PNG transparente</span>
+        <div class="subgrupo-conteudo">
+          <div class="grade-arquivos">
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">PNG transparente</span>
+              </div>
+              <h4>O formato mais versátil</h4>
+              <p class="card-texto">O fundo do logo é invisível, adaptando-se a qualquer cor de fundo. Use em posts de redes sociais, stories, apresentações, documentos Word, banners e qualquer material onde o fundo não é branco. Este é o arquivo do dia a dia.</p>
             </div>
-            <h4>O formato mais versátil</h4>
-            <p class="card-texto">O fundo do logo é invisível, adaptando-se a qualquer cor de fundo. Use em posts de redes sociais, stories, apresentações, documentos Word, banners e qualquer material onde o fundo não é branco. Este é o arquivo do dia a dia.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -1089,39 +1093,39 @@
         </div>
 
         <!-- Tabela de contraste -->
-        <div class="subpasta-titulo">
+        <div class="subpasta-titulo subgrupo-header">
           <i class="ph ph-folder-open"></i>
           <h3>Uso em fundos · tabela de contraste</h3>
           <div class="subpasta-linha"></div>
+          <i class="ph ph-caret-down"></i>
         </div>
 
-        <div class="grade-arquivos">
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">Tabela</span>
+        <div class="subgrupo-conteudo">
+          <div class="grade-arquivos">
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">Tabela</span>
+              </div>
+              <h4>O que é a tabela de contraste</h4>
+              <p class="card-texto">Um guia visual que mostra quais combinações de cor são legíveis e aprovadas para a sua marca, e quais combinações devem ser evitadas por prejudicar a leitura ou a identidade visual.</p>
             </div>
-            <h4>O que é a tabela de contraste</h4>
-            <p class="card-texto">Um guia visual que mostra quais combinações de cor são legíveis e aprovadas para a sua marca, e quais combinações devem ser evitadas por prejudicar a leitura ou a identidade visual.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">Legibilidade</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">Legibilidade</span>
+              </div>
+              <h4>Combinações aprovadas</h4>
+              <p class="card-texto">A tabela indica quais cores de texto funcionam sobre quais fundos. Exemplos: texto escuro em fundo claro, texto branco em fundo escuro. Combinações ruins como cinza claro sobre branco são marcadas como inadequadas.</p>
             </div>
-            <h4>Combinações aprovadas</h4>
-            <p class="card-texto">A tabela indica quais cores de texto funcionam sobre quais fundos. Exemplos: texto escuro em fundo claro, texto branco em fundo escuro. Combinações ruins como cinza claro sobre branco são marcadas como inadequadas.</p>
-            <button class="card-ver-mais">Ver mais</button>
-          </div>
-          <div class="card-arquivo">
-            <div class="card-arquivo-barra"></div>
-            <div class="card-arquivo-top">
-              <span class="card-formato-tag">Quando consultar</span>
+            <div class="card-arquivo">
+              <div class="card-arquivo-barra"></div>
+              <div class="card-arquivo-top">
+                <span class="card-formato-tag">Quando consultar</span>
+              </div>
+              <h4>Uso na prática</h4>
+              <p class="card-texto">Consulte sempre antes de criar qualquer material. Ao pedir um material para um designer, fornecedor ou agência, compartilhe a tabela junto com os arquivos de logo e as fontes.</p>
             </div>
-            <h4>Uso na prática</h4>
-            <p class="card-texto">Consulte sempre antes de criar qualquer material. Ao pedir um material para um designer, fornecedor ou agência, compartilhe a tabela junto com os arquivos de logo e as fontes.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -1135,12 +1139,14 @@
         </div>
 
         <!-- Código de cores -->
-        <div class="subpasta-titulo">
+        <div class="subpasta-titulo subgrupo-header">
           <i class="ph ph-folder-open"></i>
           <h3>Código de cores · onde e como usar cada tipo</h3>
           <div class="subpasta-linha"></div>
+          <i class="ph ph-caret-down"></i>
         </div>
 
+        <div class="subgrupo-conteudo">
         <table class="tabela-codigos">
           <thead>
             <tr>
@@ -1176,6 +1182,7 @@
         <div class="bloco-atencao">
           <p><strong>Dica prática:</strong> Para o dia a dia digital, use sempre o HEX. Para qualquer material impresso, informe o CMYK. O Pantone é para situações onde a precisão de cor é crítica, como uniformes e embalagens de produto.</p>
         </div>
+        </div><!-- /subgrupo-conteudo -->
 
       </section>
 
@@ -1200,7 +1207,6 @@
             </div>
             <h4>Hierarquia tipográfica</h4>
             <p class="card-texto">Documento que mostra qual fonte usar em cada situação da marca: qual é para título, qual é para corpo de texto, qual é para destaque e legenda. Consulte sempre que criar qualquer material de comunicação.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1209,26 +1215,28 @@
             </div>
             <h4>Arquivos de fonte</h4>
             <p class="card-texto">Arquivos para instalar as fontes da marca no seu computador. Após instaladas, ficam disponíveis em todos os programas: Word, PowerPoint, Canva Pro, Photoshop e outros.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
-        <div class="subpasta-titulo">
+        <div class="subpasta-titulo subgrupo-header">
           <i class="ph ph-download"></i>
           <h3>Como instalar as fontes</h3>
           <div class="subpasta-linha"></div>
+          <i class="ph ph-caret-down"></i>
         </div>
 
-        <div class="passos">
-          <div class="passo-card">
-            <div class="passo-num">Mac · macOS</div>
-            <h4>Instalação no Mac</h4>
-            <p>Dê duplo clique no arquivo de fonte (extensão .otf ou .ttf). Uma janela de prévia abrirá. Clique no botão "Instalar fonte" no canto inferior. A fonte fica disponível imediatamente em todos os programas abertos após a instalação.</p>
-          </div>
-          <div class="passo-card">
-            <div class="passo-num">Windows · 10 e 11</div>
-            <h4>Instalação no Windows</h4>
-            <p>Clique com o botão direito no arquivo de fonte. No menu que aparece, selecione "Instalar" para instalar só para o seu usuário, ou "Instalar para todos os usuários" para que todos do computador possam usar. Reinicie os programas abertos.</p>
+        <div class="subgrupo-conteudo">
+          <div class="passos">
+            <div class="passo-card">
+              <div class="passo-num">Mac · macOS</div>
+              <h4>Instalação no Mac</h4>
+              <p>Dê duplo clique no arquivo de fonte (extensão .otf ou .ttf). Uma janela de prévia abrirá. Clique no botão "Instalar fonte" no canto inferior. A fonte fica disponível imediatamente em todos os programas abertos após a instalação.</p>
+            </div>
+            <div class="passo-card">
+              <div class="passo-num">Windows · 10 e 11</div>
+              <h4>Instalação no Windows</h4>
+              <p>Clique com o botão direito no arquivo de fonte. No menu que aparece, selecione "Instalar" para instalar só para o seu usuário, ou "Instalar para todos os usuários" para que todos do computador possam usar. Reinicie os programas abertos.</p>
+            </div>
           </div>
         </div>
 
@@ -1269,7 +1277,6 @@
             </div>
             <h4>Conteúdo completo</h4>
             <p class="card-texto">Variações do logo, espaçamentos mínimos obrigatórios, exemplos de uso correto e incorreto do logo, especificações de cores em todos os formatos (HEX, RGB, CMYK, Pantone), especificações tipográficas e exemplos de aplicação em diferentes fundos.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1278,7 +1285,6 @@
             </div>
             <h4>Documento de referência</h4>
             <p class="card-texto">Envie para qualquer designer, agência ou freelancer que for criar materiais para a marca. É o documento que garante que o trabalho deles esteja alinhado com a identidade aprovada, sem necessidade de revisões por problemas básicos de aplicação.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1287,7 +1293,6 @@
             </div>
             <h4>Para gráficas e produtoras</h4>
             <p class="card-texto">Compartilhe com gráficas e fornecedores de materiais impressos. O manual especifica as cores em CMYK e Pantone, e os espaçamentos mínimos do logo, garantindo que o produto final saia correto.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -1357,7 +1362,6 @@
             </div>
             <h4>Registro com data oficial</h4>
             <p class="card-texto">Um certificado digital emitido pela plataforma it'sMine!, que registra que os seus arquivos de logo existiam em uma data e hora específicas, com um timestamp oficial emitido por entidade regulada pelo governo.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1366,7 +1370,6 @@
             </div>
             <h4>Tecnologia SHA-256</h4>
             <p class="card-texto">A plataforma gera um código único (hash SHA-256) a partir dos seus arquivos de logo. Esse código é matematicamente único para aqueles arquivos — qualquer alteração geraria um código completamente diferente. O código é registrado com o timestamp oficial.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
           <div class="card-arquivo">
             <div class="card-arquivo-barra"></div>
@@ -1375,7 +1378,6 @@
             </div>
             <h4>Proteção em disputas</h4>
             <p class="card-texto">Se alguém alegar que criou uma identidade visual igual antes de você, você tem prova documental com data e hora de que a sua existia primeiro. É impossível falsificar esse registro sem que o código hash seja diferente.</p>
-            <button class="card-ver-mais">Ver mais</button>
           </div>
         </div>
 
@@ -1577,17 +1579,16 @@
       });
     });
 
-    // Ajuste 2: Ver mais / Recolher nos cards
-    document.querySelectorAll('.card-ver-mais').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.card-arquivo');
-        const texto = card.querySelector('.card-texto');
-        if (texto.classList.contains('visivel')) {
-          texto.classList.remove('visivel');
-          btn.textContent = 'Ver mais';
+    // Accordion de subgrupos
+    document.querySelectorAll('.subgrupo-header').forEach(header => {
+      const conteudo = header.nextElementSibling;
+      conteudo.style.maxHeight = conteudo.scrollHeight + 'px';
+      header.addEventListener('click', () => {
+        header.classList.toggle('recolhido');
+        if (header.classList.contains('recolhido')) {
+          conteudo.style.maxHeight = '0';
         } else {
-          texto.classList.add('visivel');
-          btn.textContent = 'Recolher';
+          conteudo.style.maxHeight = conteudo.scrollHeight + 'px';
         }
       });
     });
