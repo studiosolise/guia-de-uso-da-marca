@@ -539,7 +539,7 @@
       position: fixed;
       top: 1rem;
       right: 1rem;
-      z-index: 200;
+      z-index: 300;
       background: #ffffff;
       border: 1px solid var(--cor-cinza);
       padding: 0.6rem;
@@ -553,10 +553,6 @@
 
     .sidebar-overlay {
       display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.3);
-      z-index: 99;
     }
 
     /* Rodapé */
@@ -708,16 +704,19 @@
     /* Responsivo */
     @media (max-width: 900px) {
       .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 200;
+        overflow-y: auto;
         transform: translateX(-100%);
-        transition: transform 0.3s;
+        transition: transform 0.3s ease;
       }
 
       .sidebar.aberta {
         transform: translateX(0);
-      }
-
-      .sidebar-overlay.visivel {
-        display: block;
       }
 
       .menu-hamburguer {
@@ -758,6 +757,105 @@
         font-size: 2rem;
       }
     }
+
+    /* Busca na sidebar */
+    .sidebar-busca {
+      padding: 0.75rem 1.25rem 1rem;
+      border-bottom: 1px solid var(--cor-cinza);
+    }
+
+    .busca-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--cor-off-white);
+      border: 1px solid var(--cor-cinza);
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .busca-icone {
+      color: var(--cor-texto-sec);
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .busca-input {
+      border: none;
+      background: transparent;
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.8125rem;
+      color: var(--cor-texto);
+      width: 100%;
+      outline: none;
+    }
+
+    .busca-input::placeholder {
+      color: var(--cor-texto-sec);
+    }
+
+    .busca-limpar {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--cor-texto-sec);
+      padding: 0;
+      display: flex;
+      align-items: center;
+      font-size: 0.75rem;
+    }
+
+    .busca-resultados {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .busca-item {
+      display: block;
+      padding: 0.4rem 0.5rem;
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.8rem;
+      color: var(--cor-texto);
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-align: left;
+      width: 100%;
+    }
+
+    .busca-item:hover {
+      background: var(--cor-off-white);
+      color: var(--cor-texto);
+    }
+
+    .busca-item .busca-item-secao {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--cor-texto-sec);
+      margin-bottom: 0.1rem;
+    }
+
+    .busca-sem-resultado {
+      font-family: var(--fonte-paralucent, 'Paralucent', sans-serif);
+      font-weight: 200;
+      font-size: 0.8rem;
+      color: var(--cor-texto-sec);
+      padding: 0.4rem 0.5rem;
+      font-style: italic;
+    }
+
+    mark {
+      background: #f0ede6;
+      color: var(--cor-texto);
+      border-radius: 2px;
+      padding: 0 2px;
+    }
   </style>
 </head>
 <body>
@@ -776,6 +874,22 @@
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-logo">
         <img src="https://design.studiosolise.com.br/logos/logo-completo-preto.svg" alt="Studio Solise">
+      </div>
+      <div class="sidebar-busca">
+        <div class="busca-wrapper">
+          <i class="ph ph-magnifying-glass busca-icone"></i>
+          <input
+            type="text"
+            id="campoBusca"
+            class="busca-input"
+            placeholder="Buscar no guia..."
+            autocomplete="off"
+          >
+          <button class="busca-limpar" id="limparBusca" style="display:none;" aria-label="Limpar busca">
+            <i class="ph ph-x"></i>
+          </button>
+        </div>
+        <div id="resultadosBusca" class="busca-resultados" style="display:none;"></div>
       </div>
       <!-- Ajuste 3 e 4: numeração 00-06, ordem ícone → nome → número -->
       <nav class="sidebar-nav" aria-label="Seções do guia">
@@ -1531,13 +1645,11 @@
 
     function abrirMenu() {
       sidebar.classList.add('aberta');
-      overlay.classList.add('visivel');
       btnMenu.querySelector('i').className = 'ph ph-x';
     }
 
     function fecharMenu() {
       sidebar.classList.remove('aberta');
-      overlay.classList.remove('visivel');
       btnMenu.querySelector('i').className = 'ph ph-list';
     }
 
@@ -1548,8 +1660,6 @@
         abrirMenu();
       }
     });
-
-    overlay.addEventListener('click', fecharMenu);
 
     // Fechar menu ao clicar em link (mobile)
     document.querySelectorAll('.sidebar-link').forEach(link => {
@@ -1638,6 +1748,99 @@
         }
       });
     });
+
+    // Busca na sidebar
+    (function() {
+      const campo = document.getElementById('campoBusca');
+      const limpar = document.getElementById('limparBusca');
+      const resultados = document.getElementById('resultadosBusca');
+
+      // Índice de busca: coleta títulos e textos de cada subseção/card
+      const indice = [];
+
+      document.querySelectorAll('.secao-manual').forEach(secao => {
+        const secaoLabel = secao.querySelector('.secao-label')?.textContent.trim() || '';
+        const secaoTitulo = secao.querySelector('.secao-titulo')?.textContent.trim() || '';
+        const secaoId = secao.id;
+
+        // Adiciona a seção principal
+        indice.push({
+          titulo: secaoTitulo,
+          contexto: secaoLabel,
+          id: secaoId,
+          elemento: secao
+        });
+
+        // Adiciona subgrupos e cards
+        secao.querySelectorAll('h3, .card-titulo, .arquivo-titulo').forEach(el => {
+          indice.push({
+            titulo: el.textContent.trim(),
+            contexto: secaoTitulo,
+            id: secaoId,
+            elemento: el
+          });
+        });
+      });
+
+      function buscar(termo) {
+        if (!termo || termo.length < 2) {
+          resultados.style.display = 'none';
+          resultados.innerHTML = '';
+          limpar.style.display = 'none';
+          return;
+        }
+
+        limpar.style.display = 'flex';
+        const termoLower = termo.toLowerCase();
+        const encontrados = indice.filter(item =>
+          item.titulo.toLowerCase().includes(termoLower) ||
+          item.contexto.toLowerCase().includes(termoLower)
+        ).slice(0, 8);
+
+        if (encontrados.length === 0) {
+          resultados.innerHTML = '<span class="busca-sem-resultado">Nenhum resultado encontrado.</span>';
+          resultados.style.display = 'block';
+          return;
+        }
+
+        resultados.innerHTML = encontrados.map((item, i) =>
+          `<button class="busca-item" data-index="${i}" onclick="irPara('${item.id}', this)">
+            <span class="busca-item-secao">${item.contexto}</span>
+            ${item.titulo}
+          </button>`
+        ).join('');
+
+        // Guarda referências
+        resultados.querySelectorAll('.busca-item').forEach((btn, i) => {
+          btn._elemento = encontrados[i].elemento;
+        });
+
+        resultados.style.display = 'flex';
+      }
+
+      window.irPara = function(id, btn) {
+        const secao = document.getElementById(id);
+        if (secao) {
+          secao.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Fecha sidebar no mobile
+          document.querySelector('.sidebar')?.classList.remove('aberta');
+        }
+        // Destaca o elemento específico se disponível
+        if (btn._elemento) {
+          btn._elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      };
+
+      campo.addEventListener('input', () => buscar(campo.value.trim()));
+
+      limpar.addEventListener('click', () => {
+        campo.value = '';
+        resultados.innerHTML = '';
+        resultados.style.display = 'none';
+        limpar.style.display = 'none';
+        campo.focus();
+      });
+    })();
   </script>
 
 </body>
